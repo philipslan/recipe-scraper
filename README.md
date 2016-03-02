@@ -9,6 +9,9 @@ Something for Easy to/from DIY
 Something for cooking methods
 
 
+Dependencies:
+BeautifulSoup
+
 
 to get recipe
 >from scraper import get_recipe
