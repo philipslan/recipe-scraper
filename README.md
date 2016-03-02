@@ -9,6 +9,9 @@
 - Something for Easy to/from DIY
 - Something for cooking methods
 
+## Dependencies:
+BeautifulSoup
+
 ## Scraping Recipes
 >from scraper import get_recipe
 >url = "http://allrecipes.com/8729832"
