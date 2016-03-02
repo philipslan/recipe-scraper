@@ -7,3 +7,11 @@ list of ingredient substitutions for food styles
 list of ingredient substitutions for health preferences  (low calorie, low fat, etc.)
 Something for Easy to/from DIY
 Something for cooking methods
+
+
+
+to get recipe
+>from scraper import get_recipe
+>url = "http://allrecipes.com/8729832"
+>recipe = get_recipe(url)
+>print recipe
