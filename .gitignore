@@ -1,3 +1,4 @@
+venv/
 #### joe made this: http://goel.io/joe
 
 #####=== OSX ===#####
@@ -88,4 +89,3 @@ docs/_build/
 
 # PyBuilder
 target/
-
