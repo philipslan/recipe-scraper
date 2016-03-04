@@ -1,0 +1,158 @@
+[
+  {
+    "name": [
+      "oil"
+    ],
+    "max": null,
+    "preparation": [],
+    "descriptor": [],
+    "measurement": [
+      "tablespoon"
+    ],
+    "entry": [
+      "oil",
+      "NOUN"
+    ],
+    "prep-description": [],
+    "quantity": [
+      "1"
+    ]
+  },
+  {
+    "name": [
+      "skinless,",
+      "boneless",
+      "boneless",
+      "chicken",
+      "chicken",
+      "breast",
+      "breast",
+      "halves"
+    ],
+    "max": null,
+    "preparation": [],
+    "descriptor": [],
+    "measurement": [
+      "unit",
+      "units",
+      "discrete"
+    ],
+    "entry": [
+      "halves",
+      "NOUN"
+    ],
+    "prep-description": [],
+    "quantity": [
+      "6"
+    ]
+  },
+  {
+    "name": [],
+    "max": null,
+    "preparation": [],
+    "descriptor": [],
+    "measurement": [
+      "unit",
+      "units",
+      "discrete"
+    ],
+    "entry": "1 lemon",
+    "prep-description": [],
+    "quantity": [
+      "1"
+    ]
+  },
+  {
+    "name": [],
+    "max": null,
+    "preparation": [],
+    "descriptor": [],
+    "measurement": [
+      "cup"
+    ],
+    "entry": "1/4 cup butter",
+    "prep-description": [],
+    "quantity": [
+      "1/4"
+    ]
+  },
+  {
+    "name": [
+      "fresh",
+      "mushrooms"
+    ],
+    "max": null,
+    "preparation": [],
+    "descriptor": [],
+    "measurement": [
+      "cups"
+    ],
+    "entry": [
+      "mushrooms",
+      "NOUN"
+    ],
+    "prep-description": [],
+    "quantity": [
+      "3"
+    ]
+  },
+  {
+    "name": [
+      "flour"
+    ],
+    "max": null,
+    "preparation": [],
+    "descriptor": [],
+    "measurement": [
+      "tablespoons"
+    ],
+    "entry": [
+      "flour",
+      "NOUN"
+    ],
+    "prep-description": [],
+    "quantity": [
+      "2"
+    ]
+  },
+  {
+    "name": [
+      "chicken",
+      "broth,",
+      "broth,"
+    ],
+    "max": null,
+    "preparation": [],
+    "descriptor": [],
+    "measurement": [
+      "cup"
+    ],
+    "entry": [
+      "needed",
+      "VERB"
+    ],
+    "prep-description": [],
+    "quantity": [
+      "1/2"
+    ]
+  },
+  {
+    "name": [
+      "parsley"
+    ],
+    "max": null,
+    "preparation": [],
+    "descriptor": [],
+    "measurement": [
+      "tablespoon"
+    ],
+    "entry": [
+      "parsley",
+      "NOUN"
+    ],
+    "prep-description": [],
+    "quantity": [
+      "1"
+    ]
+  }
+]
