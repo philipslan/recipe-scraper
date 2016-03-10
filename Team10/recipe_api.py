@@ -4,13 +4,12 @@ from ingredients import ingredients
 from methods import methods
 from tools import tools
 import scraper
-
+from pprint import pprint
 
 def autograder(url):
     '''Accepts the URL for a recipe, and returns a dictionary of the
     parsed results in the correct format. See project sheet for
     details on correct format.'''
-
     results = {}
     results['url'] = url   
     
@@ -27,4 +26,5 @@ def autograder(url):
 
     results['cooking tools'] = tools.find_tools(recipe['directions'])
 
-    return json.dumps(results, indent=4)
+    pprint(results)
+    return results
