@@ -1,13 +1,15 @@
 import json
 import nltk
 import string
+import os
+path = os.path.dirname(__file__)
 
 # loading primary methods
-with open('methods/primary_methods.json') as data_file:
+with open(os.path.join(path,'primary_methods.json')) as data_file:
 	primary_methods = set(json.load(data_file))
 
 # loading secondary methods
-with open('methods/cooking_methods.json') as data_file:
+with open(os.path.join(path,'cooking_methods.json')) as data_file:
 	methods = set(json.load(data_file))
 
 # For methods, there is one primary cooking method (if exists) and other methods.
