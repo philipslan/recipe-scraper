@@ -38,12 +38,13 @@ def find_methods(step):
 	exclude = set(string.punctuation)
 	exclude.remove('-')
 	step_words = (''.join(ch for ch in step if ch not in exclude)).lower().split(' ')
-	print step_words
 	# find methods
 	for word in step_words:
-		if word in methods:
-			print word
-			cooking_methods.append(word)
+		for method in methods:
+			if method in word and method != word:
+				cooking_methods.append(word)
+			elif method == word:
+				cooking_methods.append(method)
 
 	return list(set(cooking_methods))
 
@@ -60,7 +61,6 @@ def find_all_methods(title, directions):
 	cooking_methods: other cooking methods found in the directions
 	"""
 
-	primary_method = ""
 	cooking_methods = []
 
 	# acquire all the cooking methods present in the directions (may have repeated ones)
@@ -69,8 +69,10 @@ def find_all_methods(title, directions):
 
 	title = title.lower().split(' ')
 	for word in title:
-		if word in primary_methods:
-			primary_method = word
+		for method in primary_methods:
+			if method in word:
+				primary_method = word
+				break
 
 	# if we can't find the primary method in the title
 	if not primary_method:
