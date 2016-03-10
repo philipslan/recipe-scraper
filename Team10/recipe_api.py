@@ -19,7 +19,7 @@ def autograder(url):
     for ing in recipe['ingredients']:
         results['ingredients'].append(ingredients.parse_ingredients(ing, unit_measure, regex))
 
-    primary_cooking_methods, cooking_methods = methods.find_all_methods(recipe['title'],recipe['ingredients'])
+    primary_cooking_methods, cooking_methods = methods.find_all_methods(recipe['title'],recipe['directions'])
     results['primary cooking method'] = primary_cooking_methods
     results['cooking methods'] = cooking_methods
 
