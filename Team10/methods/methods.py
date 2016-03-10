@@ -3,11 +3,11 @@ import nltk
 import string
 
 # loading primary methods
-with open('primary_methods.json') as data_file:
+with open('methods/primary_methods.json') as data_file:
 	primary_methods = set(json.load(data_file))
 
 # loading secondary methods
-with open('cooking_methods.json') as data_file:
+with open('methods/cooking_methods.json') as data_file:
 	methods = set(json.load(data_file))
 
 # For methods, there is one primary cooking method (if exists) and other methods.
