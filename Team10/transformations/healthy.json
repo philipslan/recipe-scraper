@@ -2,17 +2,28 @@
     "low-carb": {
         "white rice": "brown rice",
         "couscous": "quinoa",
-        "pasta": "spagetti squash",
+        "pasta": "spaghetti squash",
         "breadcrumbs": "rolled oats",
         "white bread": "whole wheat bread",
         "mashed potatoes": "mashed cauliflower",
         "milk": "coconut milk",
         "taco shell": "lettuce wrap",
-        "french fries": "turnips"
+        "french fries": "turnips",
+        "hamburger buns": "portabello mushrooms",
+        "sliced bread" : "eggplant",
+        "lasagna": "zucchini",
+        "mac and cheese": "cauliflower",
+        "pancakes" : "oatmeal pancakes",
+        "pizza crust" : "mushrooms",
+        "scalloped potatoes": "tempeh",
+        "pasta salad": "mixed vegetables",
+        "potato chips": "kale chips",
+        "bread": "cabbage"
     },
     "low-sodium": {
         "table salt": "sesame oil",
         "salt": "sesame oil",
+        "sea salt": "sesame oil",
         "baking soda": "sodium-free baking soda",
         "baking powder": "low-sodium baking powder",
         "soy sauce": "liquid aminos",
@@ -23,7 +34,9 @@
         "steak sauce": "low-sodium steak sauce",
         "salad dressing": "olive oil",
         "ranch dressing": "balsamic vinegar",
-        "barbeque sauce": "ketchup",
+        "bbq sauce": "low-sodium ketchup",
+        "barbecue sauce": "low-sodium ketchup",
+        "ketchup": "low-sodium ketchup",
         "relish": "low-sodium sweet relish",
         "bacon": "fresh pork belly",
         "salt cod": "fresh cod",
@@ -68,6 +81,11 @@
         "soup cube": "mushroom broth",
         "stock cube": "mushroom broth",
         "cream of vegetable soup": "mushroom broth",
+        "salted butter": "unsalted butter",
+        "marinade": "flavored vinegar",
+        "canned corn": "fresh corn",
+        "canned tomatoes": "fresh tomatoes",
+        "soup": "vegetable puree",
         "salted butter": "unsalted butter"
     }
 }
