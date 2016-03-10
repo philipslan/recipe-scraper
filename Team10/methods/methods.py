@@ -34,11 +34,13 @@ def find_methods(step):
 
 	cooking_methods = []
 	exclude = set(string.punctuation)
+	exclude.remove('-')
 	step_words = (''.join(ch for ch in step if ch not in exclude)).lower().split(' ')
-
+	print step_words
 	# find methods
 	for word in step_words:
 		if word in methods:
+			print word
 			cooking_methods.append(word)
 
 	return list(set(cooking_methods))
