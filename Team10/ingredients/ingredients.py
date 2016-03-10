@@ -5,9 +5,9 @@ import re
 
 ### loading measurements ###
 def load_ingredient_data():
-	with open('units.json') as data_file:
+	with open('ingredients/units.json') as data_file:
 		units_measure = set(json.load(data_file))
-	with open('prep_methods.json') as data_file:
+	with open('ingredients/prep_methods.json') as data_file:
 		prep_methods = json.load(data_file)
 	regex = ""
 	for i,method in enumerate(prep_methods):
@@ -57,21 +57,17 @@ def is_number(s):
 
 
 def get_names(clean_tags):
-	# print "CLEAN TAGS", clean_tags
-	# print len(clean_tags)
 	if len(clean_tags)==2:
 		clean_tags[0][len(clean_tags[0])-1][1]="list"
 		clean_tags[1][0][1]="list"
 	output = []
 	for tags in clean_tags:
-		# print tags
 		for i,tag in enumerate(tags):
 			if tag[1] == "NOUN":
 				before = [val[0] for val in tags[:i]]
 				noun = tag
 				after = [val[0] for val in tags[i:]]
 				output+= all_possible_combinations(tags[:i],tags[i],tags[i+1:])
-				# print "NEW OUTPUT: ", output
 	if output:
 		return list(set(output))
 	return [' '.join([t[0] for t in tags])]
@@ -93,27 +89,18 @@ def join_lists_reverse(li):
 	return ['']
 
 def all_possible_combinations(before, noun, after):
-	# print "ALL POSSIBLE COMBINATIONS\n--------------"
-	# print "BEFORE: ", before
-	# print "NOUN: ", noun
-	# print "AFTER: ", after
 	before_li = join_lists_reverse([b[0] for b in before])
 	after_li = join_lists([a[0] for a in after])
-	# print before_li
-	# print after_li
 	boutput = []
 	for val in before_li:
 		boutput.append(val+' '+noun[0])
 	output = []
 	for val in after_li:
 		for b in boutput:
-			# print b
-			# print val
 			output.append(str(b+' '+val).strip().strip(','))
 	return output
 
 def preprocess(entry_list):
-	# print entry_list
 	output_before = []
 	output_after = []
 	for i,val in enumerate(entry_list):
