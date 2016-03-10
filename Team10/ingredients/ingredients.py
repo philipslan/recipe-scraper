@@ -14,8 +14,7 @@ def load_ingredient_data():
 		regex += method + "\w+|" + method if i is len(prep_methods) - 1 else method + "\w+|" + method + "|"
 	return units_measure, regex
 
-def parse_ingredients(entry):
-	units_measure, prep_regex = load_ingredient_data()
+def parse_ingredients(entry, units_measure, prep_regex):
 	output = {}
 	entry_list = entry.split()
 	### finding quantity 	 ###
