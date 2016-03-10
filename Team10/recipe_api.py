@@ -1,8 +1,10 @@
 '''Version 0.1'''
+import json
 from ingredients import ingredients
 from methods import methods
 from tools import tools
 import scraper
+
 
 def autograder(url):
     '''Accepts the URL for a recipe, and returns a dictionary of the
@@ -24,5 +26,5 @@ def autograder(url):
     results['cooking methods'] = cooking_methods
 
     results['cooking tools'] = tools.find_tools(recipe['directions'])
-    
-    return results
+
+    return json.dumps(results, indent=4)

@@ -90,3 +90,4 @@ docs/_build/
 # PyBuilder
 target/
 parsegrades.csv
+test_results
