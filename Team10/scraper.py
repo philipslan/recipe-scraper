@@ -8,6 +8,6 @@ def get_recipe(url):
 
     o = {'ingredients':[],'directions':[]}
     o['ingredients'] = [ingredient.text for ingredient in soup.findAll("span", {"itemprop":"ingredients"})]
-    o['directions'] = [direction.text for direction in soup.findAll("span",{"class":"recipe-directions__list--item"})]
+    o['directions'] = [direction.text for direction in soup.findAll("span",{"class":"recipe-directions__list--item"}) if len(direction) > 0]
     
     return o
