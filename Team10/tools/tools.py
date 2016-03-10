@@ -37,13 +37,12 @@ def find_tools(steps):
                 all_tools.append(st)
     
     all_tools = f7(all_tools)
-    print tools_by_step
-    print all_tools
     
     # TODO synthesize all step tools? i.e. if "pan" is in step 4 and
     #  "skillet" was in step 1, remove "skillet" as from tools
     #  as they're likely referring to the same thing
     
+    return all_tools
     
     
 def tools_for_step(step):
@@ -54,7 +53,7 @@ def tools_for_step(step):
     
     # eliminate double-counting. prevent ["skillet", "large skillet"]
     # another method would be to sort by tool length descending and 
-    # remove the matching tools from the step text as we go
+    # remove the matching tools from the sstep text as we go
     tools = []
     for rt1 in recipe_tools:
         unique = True
