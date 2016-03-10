@@ -1,5 +1,8 @@
 import json
 import re
+import os
+path = os.path.dirname(__file__)
+
 TOOLS = []
 APPLIANCES = ["oven","microwave","microwave oven","stove","toaster","oven broiler","broiler"]
 
@@ -13,7 +16,7 @@ def load_tools():
     global TOOLS
     if len(TOOLS):
         return
-    with open('tools/tools.json') as f:
+    with open(os.path.join(path, 'tools.json')) as f:
     	TOOLS = json.load(f)
 
 def find_tools(steps):

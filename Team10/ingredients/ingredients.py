@@ -2,12 +2,14 @@ import json
 import nltk
 import string
 import re
+import os
+path = os.path.dirname(__file__)
 
 ### loading measurements ###
 def load_ingredient_data():
-	with open('ingredients/units.json') as data_file:
+	with open(os.path.join(path,'units.json')) as data_file:
 		units_measure = set(json.load(data_file))
-	with open('ingredients/prep_methods.json') as data_file:
+	with open(os.path.join(path,'prep_methods.json')) as data_file:
 		prep_methods = json.load(data_file)
 	regex = ""
 	for i,method in enumerate(prep_methods):
