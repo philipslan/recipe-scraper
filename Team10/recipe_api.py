@@ -11,10 +11,10 @@ def autograder(url):
     parsed results in the correct format. See project sheet for
     details on correct format.'''
     results = {}
-    results['url'] = url   
-    
+    results['url'] = url
+
     recipe = scraper.get_recipe(url)
-    
+
     unit_measure, regex = ingredients.load_ingredient_data()
     results['ingredients'] = []
     for ing in recipe['ingredients']:
@@ -26,10 +26,5 @@ def autograder(url):
 
     results['cooking tools'] = tools.find_tools(recipe['directions'])
 
-<<<<<<< HEAD
-    return results
-    # return json.dumps(results, indent=4)
-=======
     pprint(results)
     return results
->>>>>>> 6785c3ff3dd4204ca31ea866d8b6a0c5b49ebf63

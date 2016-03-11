@@ -61,6 +61,7 @@ def find_all_methods(title, directions):
 	cooking_methods: other cooking methods found in the directions
 	"""
 
+	primary_method = ""
 	cooking_methods = []
 
 	# acquire all the cooking methods present in the directions (may have repeated ones)
