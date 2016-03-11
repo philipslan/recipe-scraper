@@ -70,10 +70,9 @@ def find_all_methods(title, directions):
 
 	title = title.lower().split(' ')
 	for word in title:
-		for method in primary_methods:
-			if method in word:
-				primary_method = word
-				break
+		if word in primary_methods:
+			primary_method = word
+			break
 
 	# if we can't find the primary method in the title
 	if not primary_method:
