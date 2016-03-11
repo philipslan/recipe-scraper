@@ -27,4 +27,5 @@ def autograder(url):
 
     results['cooking tools'] = tools.find_tools(recipe['directions'])
 
-    return json.dumps(results, indent=4)
+    return results
+    # return json.dumps(results, indent=4)

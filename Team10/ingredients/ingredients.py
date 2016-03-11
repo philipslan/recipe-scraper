@@ -20,34 +20,32 @@ def parse_ingredients(entry, units_measure, prep_regex):
 	output = {}
 	entry_list = entry.split()
 	### finding quantity 	 ###
-	quantity = ["0","1",None]
+	quantity = "0"
 	for j in entry_list[0]:
 		if is_number(j):
-			quantity = [entry_list.pop(0)]
+			quantity = entry_list.pop(0)
 			break
 	### finding measurement  ###
-	measurement = []
+	measurement = ''
 	for i,val in enumerate(entry_list):
 		if val in units_measure:
-			measurement.append(entry_list.pop(i))
+			measurement= entry_list.pop(i)
 			break
 	if not measurement:
-		measurement = ["unit", "units","discrete"]
+		measurement = "units"
 	### finding name 		 ###
 	entry_list_names = [nltk.pos_tag(lis,tagset='universal') for lis in preprocess(entry_list)]
-	name = get_names([[list(i) for i in e] for e in entry_list_names])
+	names_long = get_names([[list(i) for i in e] for e in entry_list_names])
 	### finding descriptor 	 ###
-	descriptor = get_desc(name)
+	descriptor = get_desc(names_long)
 	### finding preparation  ###
 	preparation = get_prep(entry_list, prep_regex)
-	output["entry"] = entry
-	output["name"] = name
+	output["name"] = " ".join(entry_list)
 	output["quantity"] = quantity
 	output["measurement"] = measurement
 	output["descriptor"] = descriptor
 	output["preparation"] = preparation
-	output["prep-description"] = []
-	output["max"] = None
+	output["prep-description"] = "none"
 	return output
 
 def is_number(s):
@@ -116,16 +114,18 @@ def preprocess(entry_list):
 
 def get_prep(entry_list, prep_regex):
 	if len(entry_list) == 1:
-		return []
+		return "none"
 	else:
 		tag_list = []
 		for word in entry_list:
-			tag_list.extend(re.findall(prep_regex,word))
-		return tag_list
+			prep = re.findall(prep_regex,word)
+			if prep:
+				return prep[0]
+		return "none"
 
 def get_desc(names):
 	if len(names) == 1:
-		return []
+		return "none"
 	else:
 		array = []
 		for x in names:
@@ -135,22 +135,22 @@ def get_desc(names):
 			array.extend(x.split())
 		freqdist = nltk.FreqDist(array).most_common(50)
 		margin = freqdist[0][1]
-		not_descriptor = []
 		for item in freqdist:
-			if item[1] == margin:
-				not_descriptor.append(item[0])
-		regex = ''
-		for i,desc in enumerate(not_descriptor):
-			if i == len(not_descriptor) - 1:
-				regex += desc + " | " + desc + "|" + desc 
-			else:
-				desc + " | " + desc + "|" + desc + "|"
-		all_desc = set()
-		for name in names:
-			if re.sub(regex,"",name):
-				all_desc.add(re.sub(regex,"",name))
-		for desc in all_desc:
-			if desc[0] == ",":
-				all_desc.remove(desc)
-				all_desc.add(desc[2:])
-		return list(all_desc)
+			if item[1] != margin:
+				return item[0]
+		return "none"
+		# regex = ''
+		# for i,desc in enumerate(not_descriptor):
+		# 	if i == len(not_descriptor) - 1:
+		# 		regex += desc + " | " + desc + "|" + desc 
+		# 	else:
+		# 		desc + " | " + desc + "|" + desc + "|"
+		# all_desc = set()
+		# for name in names:
+		# 	if re.sub(regex,"",name):
+		# 		all_desc.add(re.sub(regex,"",name))
+		# for desc in all_desc:
+		# 	if desc[0] == ",":
+		# 		all_desc.remove(desc)
+		# 		all_desc.add(desc[2:])
+		# return list(all_desc)
