@@ -1,15 +1,22 @@
 {
-	"milk": ["soy milk"],
-	"cheese": ["soy cheese"],
-	"eggs": ["vegan egg substitute"],
-	"butter": ["coconut butter"],
-	"honey": ["maple syrup"],
-	"stock": ["vegetable broth"],
-	"yogurt": ["coconut yogurt"],
-	"mayonnaise": ["vegan mayonnaise"],
-	"sour cream": ["soy yogurt"],
-	"gelatin": ["agar flakes"],
-	"chocolate": ["vegan chocolate"],
-	"cocoa": ["vegan chocolate"],
-	"ice cream": ["soy based ice cream"]
+	"trans": {
+		"milk": ["soy milk"],
+		"cheese": ["soy cheese"],
+		"eggs": ["vegan egg substitute"],
+		"butter": ["coconut butter", "margarine"],
+		"honey": ["maple syrup"],
+		"stock": ["vegetable broth"],
+		"yogurt": ["coconut yogurt", "greek yogurt"],
+		"mayonnaise": ["vegan mayonnaise"],
+		"sour cream": ["soy yogurt"],
+		"gelatin": ["agar flakes"],
+		"chocolate": ["vegan chocolate"],
+		"cocoa": ["vegan chocolate"],
+		"ice cream": ["soy based ice cream", "soy ice cream"]
+	},
+
+	"cheeses": ["Asiago", "Carmody", "Cheddar", "Colby", "Cotija",
+		"Edam", "Enchilado", "Fontina", "Gouda", "Havarti",
+		"Longhorn", "Port Salut", "St. George", "Syrian"
+	]
 }
