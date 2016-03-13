@@ -19,7 +19,7 @@ def autograder(url):
     results['url'] = url
 
     recipe = scraper.get_recipe(url)
-
+    
     unit_measure, regex = ingredients.load_ingredient_data()
     results['ingredients'] = []
     for ing in recipe['ingredients']:

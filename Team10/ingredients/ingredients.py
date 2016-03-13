@@ -25,6 +25,11 @@ def parse_ingredients(entry, units_measure, prep_regex):
 		if is_number(j):
 			quantity = entry_list.pop(0)
 			break
+	if "/" in quantity:
+		temp = quantity.split("/")
+		quantity = float(temp[0]) / float(temp[1])
+	else:
+		quantity = int(quantity)
 	### finding measurement  ###
 	measurement = ''
 	for i,val in enumerate(entry_list):
@@ -37,6 +42,7 @@ def parse_ingredients(entry, units_measure, prep_regex):
 	name = " ".join(entry_list)
 	entry_list_names = [nltk.pos_tag(lis,tagset='universal') for lis in preprocess(entry_list)]
 	names_long = get_names([[list(i) for i in e] for e in entry_list_names])
+	name = " ".join(parse_name(entry_list))
 	### finding descriptor 	 ###
 	descriptor = get_desc(names_long)
 	### finding preparation  ###
@@ -123,6 +129,9 @@ def get_prep(entry_list, prep_regex):
 			if prep:
 				return prep[0]
 		return "none"
+
+def parse_name(entry_list):
+	return [i for i in entry_list if "/" not in i]
 
 def get_desc(names):
 	if len(names) == 1:
