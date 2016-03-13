@@ -1,5 +1,5 @@
 
-def reverser(struct):
+def reverse(struct):
 	output = {}
 
 	for key in struct:

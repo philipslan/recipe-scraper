@@ -19,18 +19,18 @@ def autograder(url):
     results['url'] = url
 
     recipe = scraper.get_recipe(url)
-    
+
     unit_measure, regex = ingredients.load_ingredient_data()
     results['ingredients'] = []
     for ing in recipe['ingredients']:
         results['ingredients'].append(ingredients.parse_ingredients(ing, unit_measure, regex))
 
-    primary_cooking_methods, cooking_methods = methods.find_all_methods(recipe['title'],recipe['directions'])
+    primary_cooking_methods, methods_by_step, cooking_methods = methods.find_all_methods(recipe['title'],recipe['directions'])
     results['primary cooking method'] = primary_cooking_methods
     results['cooking methods'] = cooking_methods
 
     results['cooking tools'] = tools.find_tools(recipe['directions'])
-    
+
     preptools = {'fork':['mixed'],'knife':['chopped','sliced','minced','diced'], 'grater':['grated'], 'mortar and pestle':['crushed']}
     methodtools = {'baster':['basting']}
 
@@ -38,12 +38,12 @@ def autograder(url):
         for t in preptools:
             if ingredient['preparation'] in preptools[t]:
                 results['cooking tools'].append(t)
-                
+
     for method in results['cooking methods']:
         for t in methodtools:
             if method in methodtools[t]:
                 results['cooking tools'].append(t)
-                
+
     results['cooking tools'] = f7(results['cooking tools'])
 
     pprint(results)
