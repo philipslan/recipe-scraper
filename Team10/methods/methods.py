@@ -63,10 +63,12 @@ def find_all_methods(title, directions):
 
 	primary_method = ""
 	cooking_methods = []
+	methods_by_step = []
 
 	# acquire all the cooking methods present in the directions (may have repeated ones)
 	for step in directions:
 		cooking_methods.extend(find_methods(step))
+		methods_by_step.append([find_methods(step)])
 
 	title = title.lower().split(' ')
 	for word in title:
@@ -84,6 +86,8 @@ def find_all_methods(title, directions):
 				primary_method = method
 				break
 
-	return primary_method, list(set(cooking_methods))
+	all_methods = list(set(cooking_methods))
+
+	return primary_method, methods_by_step, all_methods
 
 
