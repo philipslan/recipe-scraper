@@ -3,6 +3,7 @@ import json
 from ingredients import ingredients
 from methods import methods
 from tools import tools
+from transformations import transformations
 import scraper
 from pprint import pprint
 
@@ -46,5 +47,10 @@ def autograder(url):
                 
     results['cooking tools'] = f7(results['cooking tools'])
 
-    pprint(results)
+    if transformations.is_category('vegetarian', recipe['ingredients']):
+        new_recipe = transformations.transform(recipe,'vegetarian','to')
+    else:
+        new_recipe = transformations.transform(recipe,'vegetarian','from')
+    
+    # pprint(results)
     return results

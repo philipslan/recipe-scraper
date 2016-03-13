@@ -13,10 +13,5 @@
 		"chocolate": ["vegan chocolate"],
 		"cocoa": ["vegan chocolate"],
 		"ice cream": ["soy based ice cream", "soy ice cream"]
-	},
-
-	"cheeses": ["Asiago", "Carmody", "Cheddar", "Colby", "Cotija",
-		"Edam", "Enchilado", "Fontina", "Gouda", "Havarti",
-		"Longhorn", "Port Salut", "St. George", "Syrian"
-	]
+	}
 }
