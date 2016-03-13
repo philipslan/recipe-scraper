@@ -34,13 +34,14 @@ def parse_ingredients(entry, units_measure, prep_regex):
 	if not measurement:
 		measurement = "units"
 	### finding name 		 ###
+	name = " ".join(entry_list)
 	entry_list_names = [nltk.pos_tag(lis,tagset='universal') for lis in preprocess(entry_list)]
 	names_long = get_names([[list(i) for i in e] for e in entry_list_names])
 	### finding descriptor 	 ###
 	descriptor = get_desc(names_long)
 	### finding preparation  ###
 	preparation = get_prep(entry_list, prep_regex)
-	output["name"] = " ".join(entry_list)
+	output["name"] = name
 	output["quantity"] = quantity
 	output["measurement"] = measurement
 	output["descriptor"] = descriptor
