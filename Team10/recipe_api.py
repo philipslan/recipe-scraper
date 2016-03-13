@@ -6,7 +6,10 @@ from tools import tools
 import scraper
 from pprint import pprint
 
-def f7(seq):
+preptools = {'fork':['mixed'],'knife':['chopped','sliced','minced','diced'], 'grater':['grated'], 'mortar and pestle':['crushed']}
+methodtools = {'baster':['basting'], 'oven':['bake','broil'], 'fork':['mix']}
+
+def remove_duplicates(seq):
     seen = set()
     seen_add = seen.add
     return [x for x in seq if not (x in seen or seen_add(x))]
@@ -32,8 +35,6 @@ def autograder(url):
     tools_by_step, all_tools = tools.find_tools(recipe['directions'])
     results['cooking tools'] = all_tools
 
-    preptools = {'fork':['mixed'],'knife':['chopped','sliced','minced','diced'], 'grater':['grated'], 'mortar and pestle':['crushed']}
-    methodtools = {'baster':['basting'], 'oven':['bake','broil'], 'fork':['mix']}
 
     for ingredient in results['ingredients']:
         for t in preptools:
@@ -45,16 +46,22 @@ def autograder(url):
             if method in methodtools[t]:
                 results['cooking tools'].append(t)
 
-    results['cooking tools'] = f7(results['cooking tools'])
+    results['cooking tools'] = remove_duplicates(results['cooking tools'])
 
+    # steps = recipe_by_steps(recipe['directions'],results['ingredients'],methods_by_step,tools_by_step)
+
+    # pprint(steps)
     # pprint(results)
+    return results
     
     
-    # steps
+    
+    
+    
+def recipe_by_steps(directions, ingredients, methods_by_step, tools_by_step): 
     steps = []
-    for (i, d) in enumerate(recipe['directions']):
+    for (i, d) in enumerate(directions):
         step = {}
-        print "\n",d
         step_methods = methods_by_step[i]
         step_tools = tools_by_step[i]
         
@@ -65,7 +72,7 @@ def autograder(url):
                     
                     
         step_ingredients = []
-        for ingredient in results['ingredients']:
+        for ingredient in ingredients:
             ingredient_words = ingredient['name'].split()
             for w in ingredient_words:
                 if w in d:
@@ -77,6 +84,4 @@ def autograder(url):
         step['ingredients'] = step_ingredients
         
         steps.append(step)
-    
-    
-    return results
+    return steps
