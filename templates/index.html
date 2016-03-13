@@ -1,0 +1,108 @@
+{% extends "base.html"%}
+{% block title %}
+Golden Globes
+{% endblock %}
+
+{% block content %}
+<div ng-controller="homeController">
+	<h1 style="text-align: center">Welcome to our Golden Globe Interpreter</h1>
+	<hr>
+	<h3 ng-show="working" style="text-align:center">Working...</h3>
+	<div class="col-lg-6" ng-show="!working">
+		<form class="form-horizontal">
+		  <fieldset>
+		    <legend>Interpreter</legend>
+		    <div class="form-group">
+				  <label for="select" class="col-lg-2 control-label">Year</label>
+				  <div class="col-lg-10">
+				    <select class="form-control" ng-model="year" ng-change="change_year(year)" >
+					    <option disabled value=""> -- select an option -- </option>
+				      <option>2013</option>
+				      <option>2015</option>
+				    </select>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label for="select" class="col-lg-2 control-label">Category</label>
+				  <div class="col-lg-10">
+				    <select class="form-control" id="category" ng-disabled="!category" ng-model="options" ng-change="change_options(options)">
+					    <option disabled value=""> -- select an option -- </option>
+				      <option>hosts</option>
+				      <option>awards</option>
+				      <option>nominees</option>
+				      <option>presenters</option>
+				      <option>winner</option>
+				    </select>
+				  </div>
+				</div>
+			</fieldset>
+		</form>
+		<form class="form-horizontal">
+			<fieldset>
+				<legend>Red Carpet Event</legend>
+				<div class="form-group">
+					<label for="select" class="col-lg-2 control-label">Award</label>
+				  <div class="col-lg-10">
+				    <select class="form-control" id="category" ng-disabled="!year" ng-model="red_carpet" ng-change="red_carpet_awards(red_carpet)">
+					    <option disabled value=""> -- select an option -- </option>
+				      <option value="discussed">Most Discussed</option>
+				      <option value="best">Best Dressed</option>
+				      <option value="worst">Worst Dressed</option>
+				      <option value="controversial">Most Controversial</option>
+				    </select>
+				  </div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-lg-6" style="text-align: center" ng-show="!working">
+		<h3 ng-bind="name"></h3>
+		<div style="overflow:auto; height:450px;" ng-if="list_result || nom_keys || presenters || winners">
+			<div ng-repeat="i in list_result" >
+				<p ng-bind="i"></p>
+			</div>
+			<div ng-if="nom_keys" ng-repeat="key in nom_keys">
+				<h3 ng-bind="key"></h3>
+				<table class="table table-striped table-hover">
+					<thead>
+				    <tr>
+				      <th style="text-align: center;">Nominees</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+					  <tr ng-repeat="result in nom_results[key]">
+						  <td ng-bind="result"></td>
+						</tr>
+				  </tbody>
+				</table>
+			</div>
+			<div ng-if="presenters" ng-repeat="(p,value) in presenters">
+				<h3 ng-bind="p"></h3>
+				<p ng-repeat="val in value" ng-bind="val"></p>
+			</div>
+			<div ng-if="winners" ng-repeat="(p,val) in winners">
+				<h3 ng-bind="p"></h3>
+				<p ng-bind="val"></p>
+			</div>
+		</div>
+		<div style="overflow:auto; height:450px;" ng-if="red_carpet_result">
+			<div ng-if="red_carpet == 'discussed'">
+				<h3 ng-repeat="p in red_carpet_result" ng-bind="p"></h3>
+			</div>
+			<div ng-if="red_carpet != 'discussed'" ng-repeat="p in red_carpet_result">
+				<h3 ng-bind="p[0]"></h3>
+				<h4>Loved It</h4>
+				<ul>
+					<li ng-repeat="l in p[3]" ng-bind="l" style="text-align: left"></li>
+				</ul>
+				<h4>Hated It</h4>
+				<ul>
+					<li ng-repeat="h in p[4]" ng-bind="h" style="text-align: left"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+{% endblock %}
