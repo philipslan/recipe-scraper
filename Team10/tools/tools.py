@@ -7,10 +7,6 @@ TOOLS = []
 APPLIANCES = ["oven","microwave","microwave oven","stove","toaster","oven broiler","broiler"]
 
 # removing duplicates and preserving order  http://stackoverflow.com/questions/480214/how-do-you-remove-duplicates-from-a-list-in-python-whilst-preserving-order
-def f7(seq):
-    seen = set()
-    seen_add = seen.add
-    return [x for x in seq if not (x in seen or seen_add(x))]
 
 def load_tools():
     global TOOLS
@@ -38,8 +34,6 @@ def find_tools(steps):
         for st in step_tools:            
             if st in APPLIANCES or not re.findall(r"the\s*\w*\s*" + st, s):
                 all_tools.append(st)
-    
-    all_tools = f7(all_tools)
     
     # TODO synthesize all step tools? i.e. if "pan" is in step 4 and
     #  "skillet" was in step 1, remove "skillet" as from tools

@@ -6,6 +6,11 @@ from tools import tools
 import scraper
 from pprint import pprint
 
+def f7(seq):
+    seen = set()
+    seen_add = seen.add
+    return [x for x in seq if not (x in seen or seen_add(x))]
+
 def autograder(url):
     '''Accepts the URL for a recipe, and returns a dictionary of the
     parsed results in the correct format. See project sheet for
@@ -25,6 +30,21 @@ def autograder(url):
     results['cooking methods'] = cooking_methods
 
     results['cooking tools'] = tools.find_tools(recipe['directions'])
+    
+    preptools = {'fork':['mixed'],'knife':['chopped','sliced','minced','diced'], 'grater':['grated'], 'mortar and pestle':['crushed']}
+    methodtools = {'baster':['basting']}
+
+    for ingredient in results['ingredients']:
+        for t in preptools:
+            if ingredient['preparation'] in preptools[t]:
+                results['cooking tools'].append(t)
+                
+    for method in results['cooking methods']:
+        for t in methodtools:
+            if method in methodtools[t]:
+                results['cooking tools'].append(t)
+                
+    results['cooking tools'] = f7(results['cooking tools'])
 
     pprint(results)
     return results
