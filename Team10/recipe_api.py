@@ -29,10 +29,11 @@ def autograder(url):
     results['primary cooking method'] = primary_cooking_methods
     results['cooking methods'] = cooking_methods
 
-    results['cooking tools'] = tools.find_tools(recipe['directions'])
+    tools_by_step, all_tools = tools.find_tools(recipe['directions'])
+    results['cooking tools'] = all_tools
 
     preptools = {'fork':['mixed'],'knife':['chopped','sliced','minced','diced'], 'grater':['grated'], 'mortar and pestle':['crushed']}
-    methodtools = {'baster':['basting']}
+    methodtools = {'baster':['basting'], 'oven':['bake','broil'], 'fork':['mix']}
 
     for ingredient in results['ingredients']:
         for t in preptools:
@@ -46,5 +47,36 @@ def autograder(url):
 
     results['cooking tools'] = f7(results['cooking tools'])
 
-    pprint(results)
+    # pprint(results)
+    
+    
+    # steps
+    steps = []
+    for (i, d) in enumerate(recipe['directions']):
+        step = {}
+        print "\n",d
+        step_methods = methods_by_step[i]
+        step_tools = tools_by_step[i]
+        
+        for sm in step_methods:
+            for t in methodtools:
+                if sm in methodtools[t] and t not in step_tools:
+                    tools_by_step[i].append(t)
+                    
+                    
+        step_ingredients = []
+        for ingredient in results['ingredients']:
+            ingredient_words = ingredient['name'].split()
+            for w in ingredient_words:
+                if w in d:
+                    step_ingredients.append(ingredient['name'])
+                    break
+        
+        step['methods'] = methods_by_step[i]
+        step['tools'] = tools_by_step[i]
+        step['ingredients'] = step_ingredients
+        
+        steps.append(step)
+    
+    
     return results
