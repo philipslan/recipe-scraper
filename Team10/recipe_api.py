@@ -64,7 +64,6 @@ def autograder(url):
     tools_by_step, all_tools = tools.find_tools(recipe['directions'])
     results['cooking tools'] = all_tools
 
-METHODTOOLS
     for ingredient in results['ingredients']:
         for t in PREPTOOLS:
             if ingredient['preparation'] in PREPTOOLS[t]:

@@ -1,14 +1,14 @@
 {% extends "base.html"%}
 {% block title %}
-Golden Globes
+10: Recipe Scraper
 {% endblock %}
 
 {% block content %}
 <div ng-controller="homeController">
-	<h1 style="text-align: center">Welcome to our Golden Globe Interpreter</h1>
+<h1 style="text-align: center">Team 10 Recipe Scraper</h1>
 	<hr>
 	<h3 ng-show="working" style="text-align:center">Working...</h3>
-	<div class="col-lg-6" ng-show="!working">
+<!-- 		<div class="col-lg-6" ng-show="!working">
 		<form class="form-horizontal">
 		  <fieldset>
 		    <legend>Interpreter</legend>
@@ -101,7 +101,7 @@ Golden Globes
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 
 <script src="{{ url_for('static', filename='app.js') }}"></script>
