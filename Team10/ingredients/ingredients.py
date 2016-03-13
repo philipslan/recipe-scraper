@@ -39,12 +39,13 @@ def parse_ingredients(entry, units_measure, prep_regex):
 	if not measurement:
 		measurement = "units"
 	### finding name 		 ###
-	name = " ".join(entry_list)
-	entry_list_names = [nltk.pos_tag(lis,tagset='universal') for lis in preprocess(entry_list)]
+	preproc_entry_list = preprocess(entry_list)
+	entry_list_names = [nltk.pos_tag(lis,tagset='universal') for lis in preproc_entry_list]
 	names_long = get_names([[list(i) for i in e] for e in entry_list_names])
-	name = " ".join(parse_name(entry_list))
+	name,descriptor = get_name(preproc_entry_list)
+	print "DESCRIPTOR IS", descriptor
 	### finding descriptor 	 ###
-	descriptor = get_desc(names_long)
+	#descriptor = get_desc(names_long)
 	### finding preparation  ###
 	preparation = get_prep(entry_list, prep_regex)
 	output["name"] = name
@@ -61,6 +62,41 @@ def is_number(s):
         return True
     except ValueError:
         return False
+
+def get_name(in_list):
+	if len(in_list) == 1:
+		lis = in_list[0]
+	else:
+		lis = in_list[0][:len(in_list[0])-1]
+	temp = nltk.pos_tag(lis,tagset="universal")
+	output_list1 = []
+	output_list2 = []
+
+	for val in temp:
+		if val[1] == 'ADP':
+			break
+		elif val[1] != 'VERB' and val[1] != 'PRT' and val[1] != 'ADJ' and val[1] != 'NUM':
+			output_list1.append(val[0])
+		elif val[1] != 'NUM':
+			output_list2.append(val)
+
+	if output_list1:
+		output1 = ' '.join(output_list1).strip().strip(',')
+	elif len(lis) <= 2:
+		output1 =  ' '.join(lis).strip().strip(',')
+	else:
+		output1 = ' '.join(lis).strip().strip(',')
+
+	for val in output_list2:
+		if val[1] != 'NUM':
+			output2 = val[0]
+
+	if output_list2:
+		return output1,output_list2[0][0].strip().strip(',')
+	for val in temp:
+		if val[1]!= 'NUM':
+			return output1,val[0].strip().strip(',')
+
 
 
 def get_names(clean_tags):
@@ -132,35 +168,3 @@ def get_prep(entry_list, prep_regex):
 
 def parse_name(entry_list):
 	return [i for i in entry_list if "/" not in i]
-
-def get_desc(names):
-	if len(names) == 1:
-		return "none"
-	else:
-		array = []
-		for x in names:
-			index = x.find(",")
-			if index != -1:
-				x = x[:index]+x[index+1:]
-			array.extend(x.split())
-		freqdist = nltk.FreqDist(array).most_common(50)
-		margin = freqdist[0][1]
-		for item in freqdist:
-			if item[1] != margin:
-				return item[0]
-		return "none"
-		# regex = ''
-		# for i,desc in enumerate(not_descriptor):
-		# 	if i == len(not_descriptor) - 1:
-		# 		regex += desc + " | " + desc + "|" + desc 
-		# 	else:
-		# 		desc + " | " + desc + "|" + desc + "|"
-		# all_desc = set()
-		# for name in names:
-		# 	if re.sub(regex,"",name):
-		# 		all_desc.add(re.sub(regex,"",name))
-		# for desc in all_desc:
-		# 	if desc[0] == ",":
-		# 		all_desc.remove(desc)
-		# 		all_desc.add(desc[2:])
-		# return list(all_desc)
