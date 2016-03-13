@@ -43,7 +43,6 @@ def parse_ingredients(entry, units_measure, prep_regex):
 	entry_list_names = [nltk.pos_tag(lis,tagset='universal') for lis in preproc_entry_list]
 	names_long = get_names([[list(i) for i in e] for e in entry_list_names])
 	name,descriptor = get_name(preproc_entry_list)
-	print "DESCRIPTOR IS", descriptor
 	### finding descriptor 	 ###
 	#descriptor = get_desc(names_long)
 	### finding preparation  ###
