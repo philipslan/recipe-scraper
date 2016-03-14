@@ -16,7 +16,7 @@ def load_transformations(category):
     	TRANSFORMATIONS['to'][category] = json.load(f)
         TRANSFORMATIONS['from'][category] = {key: reverse(TRANSFORMATIONS['to'][category][key]) for key in TRANSFORMATIONS['to'][category]}
 
-def is_category(category, ingredients):
+def is_category(category, ingredients, title):
     trans_list = []
     if category == 'vegetarian':
         load_transformations(category)
@@ -33,11 +33,18 @@ def is_category(category, ingredients):
     else:
         print "Category not found"
 
+    if category.lower() in title.lower():
+        return True
+    regex = ""
+    for i,x in enumerate(trans_list):
+        if i == len(trans_list) - 1:
+            regex += x
+        else:    
+            regex += x + "|"
     for ingredient in ingredients:
-        for ing in ingredient.split():
-            if ing in trans_list:
-                return True
-    return False
+        if len(re.findall(regex,ingredient)):
+            return False    
+    return True
 
 # to_category is 'to' or 'from'
 def transform(recipe, category, to_or_from):
