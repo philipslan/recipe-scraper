@@ -12,7 +12,7 @@ EECS337: Recipes
             <button type="submit", style="width:400px;" ng-click="getRecipe()">Go</button>
         </div>    
         <div class="col-xs-6">
-            <div ng-show="parsed && !transformed">
+            <div ng-show="parsed">
                 Transform to:<br/>
     			<select class="form-control" id="category" ng-model="transformation" ng-change="transform()">
     				<option default value=""> -- select an option -- </option>
