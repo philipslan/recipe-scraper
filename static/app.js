@@ -47,7 +47,7 @@ recipe.controller('homeController', function ($scope,$http) {
       var params = $scope.transformation.split('_');
       var to_or_from = params[0];
       var category = params[1];
-      var path = '/_transform/' + JSON.stringify($scope.recipe) + '/' + to_or_from + '/' + category;
+      var path = '/_transform/' + encodeURIComponent($scope.url) + '/' + to_or_from + '/' + category;
       
       $http({
         url:$SCRIPT_ROOT + path,
