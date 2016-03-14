@@ -1,5 +1,5 @@
 {
-	"to_chinese_ingredients": {
+	"chinese": {
 		"ketchup": ["tomato paste"],
 		"barbecue sauce": ["tomato paste"],
 		"bbq sauce": ["tomato paste"],
@@ -40,16 +40,22 @@
 		"spinach": ["Chinese kale"],
 		"brussel sprouts": ["bok choy"],
 		"water chestnuts": ["lotus root"],
-		"red pepper": ["red chili"]
-	},
-
-	"to_chinese_methods": {
+		"red pepper": ["red chili"],
 		"grill": ["stir-fry"],
 		"bake": ["steam"],
-		"barbecue": ["roast"]
+		"barbecue": ["roast"],
+		"blue cheese": ["Daliang buffalo cheese"],
+		"feta cheese": ["Daliang buffalo cheese"],
+		"american cheese": ["Daliang buffalo cheese"],
+		"provolone": ["Daliang buffalo cheese"],
+		"mozzarella cheese": ["Daliang buffalo cheese"],
+		"american cheese": ["Daliang buffalo cheese"],
+		"parmesan cheese": ["chives"]
+
 	},
 
-	"to_italian_ingredients": {
+
+	"italian": {
 		"broccoli": ["artichokes"],
 		"brussel sprouts": ["spinach"],
 		"cabbage": ["spinach"],
@@ -100,10 +106,7 @@
 		"dumpling": ["tortellini"],
 		"white rice": ["arborio rice"],
 		"brown rice": ["arborio rice"],
-		"rice": ["arborio rice"]
-	},
-
-	"to_italian_methods": {
+		"rice": ["arborio rice"],
 		"stir-fry": ["sauteed"],
 		"grill": ["sauteed"]
 	}

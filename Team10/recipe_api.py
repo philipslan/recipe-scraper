@@ -79,10 +79,10 @@ def autograder(url):
 
     results['cooking tools'] = remove_duplicates(results['cooking tools'])
 
-    if transformations.is_category('low-sodium', recipe['ingredients'], recipe['title']) == False:
-        new_recipe = transformations.transform(recipe,'low-sodium','to')
+    if transformations.is_category('vegan', recipe['ingredients'], recipe['title']) == False:
+        new_recipe = transformations.transform(recipe,'vegan','to')
     else:
-        new_recipe = transformations.transform(recipe,'low-sodium','from')
+        new_recipe = transformations.transform(recipe,'vegan','from')
 
     # pprint(results)
     pprint(new_recipe)

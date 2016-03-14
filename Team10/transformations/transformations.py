@@ -18,18 +18,15 @@ def load_transformations(category):
 
 def is_category(category, ingredients, title):
     trans_list = {}
-    if category == 'vegetarian':
+    if category == 'vegetarian' or category == 'vegan':
         load_transformations(category)
         trans_list = TRANSFORMATIONS['to'][category]['trans']
-    elif category == 'vegan':
-        load_transformations(category)
-        trans_list = TRANSFORMATIONS['to'][category]['trans']
-    elif category == 'low-carb':
+    elif category == 'low-carb' or category == 'low-sodium':
         load_transformations('healthy')
         trans_list = TRANSFORMATIONS['to']['healthy'][category]
-    elif category == 'low-sodium':
-        load_transformations('healthy')
-        trans_list = TRANSFORMATIONS['to']['healthy'][category]
+    elif category == 'chinese' or category == 'italian':
+        load_transformations('cuisine')
+        trans_list = TRANSFORMATIONS['to']['cuisine'][category]
     else:
         print "Category not found"
 
@@ -55,6 +52,9 @@ def transform(recipe, category, to_or_from, typ=None):
     elif category == 'low-carb' or category == 'low-sodium':
         trans_list = TRANSFORMATIONS[to_or_from]['healthy'][category]
         typ = 'healthy'
+    elif category == 'chinese' or category == 'italian':
+        trans_list = TRANSFORMATIONS[to_or_from]['cuisine'][category]
+        typ = 'cuisine'
     for key,value in recipe.iteritems():
         if key == "imageUrl":
             pass
@@ -67,7 +67,12 @@ def transform(recipe, category, to_or_from, typ=None):
 def transform_helper(ingredients, transformations, typ, to_or_from, other, category):
     final = []
     original_ingredients = ingredients[:]
+
     for i in xrange(len(ingredients)):
+
+        if 'cheese' in ingredients[i]:
+            print ingredients[i]
+
         for key,val in transformations.iteritems():
             replace = " or ".join(val) if len(val) > 1 else val[0]
             ingredients[i] = re.sub(key,replace,ingredients[i].lower())
@@ -94,8 +99,12 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
 
     # Change title to include what we transformed into
     if other is "title" and to_or_from is "to" and category not in final[0].lower():
-        final[0] = category + " " + final[0]
-        final[0] = final[0].title()
+        if typ == 'cuisine':
+            final[0] = category + " Style " + final[0]
+            final[0] = final[0].title()
+        else:
+            final[0] = category + " " + final[0]
+            final[0] = final[0].title()
 
 
     return final
