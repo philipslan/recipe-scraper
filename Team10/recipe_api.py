@@ -14,20 +14,20 @@ def remove_duplicates(seq):
     seen = set()
     seen_add = seen.add
     return [x for x in seq if not (x in seen or seen_add(x))]
-    
-def recipe_by_steps(directions, ingredients, methods_by_step, tools_by_step): 
+
+def recipe_by_steps(directions, ingredients, methods_by_step, tools_by_step):
     steps = []
     for (i, d) in enumerate(directions):
         step = {}
         step_methods = methods_by_step[i]
         step_tools = tools_by_step[i]
-        
+
         for sm in step_methods:
             for t in METHODTOOLS:
                 if sm in METHODTOOLS[t] and t not in step_tools:
                     tools_by_step[i].append(t)
-                    
-                    
+
+
         step_ingredients = []
         for ingredient in ingredients:
             ingredient_words = ingredient['name'].split()
@@ -35,14 +35,14 @@ def recipe_by_steps(directions, ingredients, methods_by_step, tools_by_step):
                 if w in d:
                     step_ingredients.append(ingredient['name'])
                     break
-        
+
         step['methods'] = methods_by_step[i]
         step['tools'] = tools_by_step[i]
         step['ingredients'] = step_ingredients
-        
+
         steps.append(step)
     return steps
-    
+
 
 def autograder(url):
     '''Accepts the URL for a recipe, and returns a dictionary of the
@@ -78,17 +78,17 @@ def autograder(url):
                 results['cooking tools'].append(t)
 
     results['cooking tools'] = remove_duplicates(results['cooking tools'])
-    
-    if transformations.is_category('vegetarian', recipe['ingredients'], recipe['title']) == False:
-        new_recipe = transformations.transform(recipe,'vegetarian','to')
+
+    if transformations.is_category('low-sodium', recipe['ingredients'], recipe['title']) == False:
+        new_recipe = transformations.transform(recipe,'low-sodium','to')
     else:
-        new_recipe = transformations.transform(recipe,'vegetarian','from')
-    
+        new_recipe = transformations.transform(recipe,'low-sodium','from')
+
     # pprint(results)
     pprint(new_recipe)
     return results
-    
-    
+
+
 
 def parse_recipe_from_url(url):
     '''Accepts the URL for a recipe, and returns a dictionary of the
@@ -131,7 +131,7 @@ def parse_recipe(recipe,results):
 
     results['cooking tools'] = remove_duplicates(results['cooking tools'])
     steps = recipe_by_steps(recipe['directions'],results['ingredients'],methods_by_step,tools_by_step)
-    
+
+
     return {'results':results, 'steps':steps, 'imageUrl':recipe['imageUrl'], 'title':recipe['title']}
-    
 

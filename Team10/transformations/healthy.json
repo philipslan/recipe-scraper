@@ -11,7 +11,6 @@
         "macaroni": ["cauliflower"],
         "mac and cheese": ["cauliflower and cheese"],
         "pasta salad": ["mixed vegetables"],
-        "pasta": ["spaghetti squash"],
         "breadcrumbs": ["rolled oats"],
         "sliced bread": ["eggplant"],
         "white bread": ["whole wheat bread"],
@@ -28,7 +27,6 @@
         "potato chips": ["kale chips"],
         "hash browns": ["squash"]
     },
-
     "low-sodium": {
         "bacon": ["fresh pork belly"],
         "baking soda": ["sodium-free baking soda"],
@@ -73,12 +71,15 @@
         "roquefort cheese": ["mozzarella cheese"],
         "salad dressing": ["olive oil"],
         "salami": ["low-sodium ham"],
+        "salt and pepper": ["pepper"],
         "salt cod": ["fresh cod"],
-        "salt": ["sesame oil"],
         "salted butter": ["unsalted butter"],
         "salted mackerel": ["fresh mackerel"],
+        "lightly salted ": [""],
+        "salted ": [""],
         "sauerkraut": ["chopped cabbage"],
         "sea salt": ["sesame oil"],
+        "salt": ["low-sodium salt substitute"],
         "smoked herring": ["seared herring"],
         "smoked salmon": ["fresh salmon"],
         "smoked white fish": ["seared white fish"],
