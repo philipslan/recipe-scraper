@@ -95,17 +95,15 @@ def parse_recipe_from_url(url):
     parsed results in the correct format. Also returns recipe divided
     into steps which each contain methods, tools and ingredients'''
 
-    results = {}
-    results['url'] = url
-
     recipe = scraper.get_recipe(url)
     if recipe == None:
         return None
 
-    return parse_recipe(recipe,results)
+    return parse_recipe(recipe)
 
 
-def parse_recipe(recipe,results):
+def parse_recipe(recipe):
+    results = {}
     unit_measure, regex = ingredients.load_ingredient_data()
     results['ingredients'] = []
     for ing in recipe['ingredients']:
