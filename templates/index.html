@@ -11,7 +11,9 @@
     <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:300px;padding:5px;outline:none;" ng-init="url='http://allrecipes.com/Recipe/Easy-Garlic-Broiled-Chicken/'"><br/>
     <button type="submit", style="width:300px;" ng-click="getRecipe()">Go</button>
     
-    <div ng-show="parsed">
+    <div ng-show="parsed" style="padding-bottom:60px;">
+        <img style="margin-top:20px;" ng-src="{{'{{imageUrl}}'}}"/>
+        <h3>Ingredients</h3>
         <table class="table table-striped">
         	<thead>
 				<tr>
@@ -30,7 +32,7 @@
 	        		<td ng-bind="ing.measurement"></td>
 	        		<td ng-bind="ing.descriptor"></td>
 	        		<td ng-bind="ing.preparation"></td>
-	        		<td ng-bind="ing.prep-description"></td>
+	        		<td >none</td>
 	        	</tr>
         	</tbody>
         </table>

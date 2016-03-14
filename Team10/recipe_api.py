@@ -127,7 +127,7 @@ def parse_recipe(url):
     results['cooking tools'] = remove_duplicates(results['cooking tools'])
     steps = recipe_by_steps(recipe['directions'],results['ingredients'],methods_by_step,tools_by_step)
     
-    return {'results':results, 'steps':steps}
+    return {'results':results, 'steps':steps, 'imageUrl':recipe['imageUrl']}
 
     
     

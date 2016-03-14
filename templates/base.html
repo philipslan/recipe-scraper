@@ -3,7 +3,6 @@
   <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
     <title>{% block title %}{% endblock %}</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script type=text/javascript>
       $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
