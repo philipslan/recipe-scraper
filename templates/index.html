@@ -7,7 +7,56 @@
 <div ng-controller="homeController">
 <h1 style="text-align: center">Team 10 Recipe Scraper</h1>
 	<hr>
-	<h3 ng-show="working" style="text-align:center">Working...</h3>
+    Enter AllRecipes URL<br/>
+    <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:300px;padding:5px;outline:none;" ng-init="url='http://allrecipes.com/Recipe/Easy-Garlic-Broiled-Chicken/'"><br/>
+    <button type="submit", style="width:300px;" ng-click="getRecipe()">Go</button>
+    
+    
+    <div ng-show="parsed">
+        <h3>Ingredients</h3>
+        <table class="table table-striped">
+        	<thead>
+				<tr>
+	        		<td><b>Name</b></td>
+	        		<td><b>Quantity</b></td>
+	        		<td><b>Measurement</b></td>
+	        		<td><b>Descriptor</b></td>
+	        		<td><b>Preparation</b></td>
+	        		<td><b>Preparation-Descripton</b></td>
+	        	</tr>
+        	</thead>
+        	<tbody>
+	        	<tr ng-repeat="ing in ingredients">
+	        		<td ng-bind="ing.name"></td>
+	        		<td ng-bind="ing.quantity"></td>
+	        		<td ng-bind="ing.measurement"></td>
+	        		<td ng-bind="ing.descriptor"></td>
+	        		<td ng-bind="ing.preparation"></td>
+	        		<td ng-bind="ing.prep-description"></td>
+	        	</tr>
+        	</tbody>
+        </table>
+        
+        
+        <div class="row">
+            <div class="col-xs-6">
+                <h3>Methods</h3>
+                <h4>Primary</h4>
+                <div ng-bind="primary_method.capitalizeFirstLetter()"></div>
+                <h4>Other</h4>
+                <div ng-repeat="method in methods">
+                    <div ng-bind="method.capitalizeFirstLetter()"></div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <h3>Tools</h3>
+                <div ng-repeat="tool in tools">
+                    <div ng-bind="tool.capitalizeFirstLetter()"></div>
+                </div>   
+            </div>
+        </div>
+    </div>
+    
 <!-- 		<div class="col-lg-6" ng-show="!working">
 		<form class="form-horizontal">
 		  <fieldset>
