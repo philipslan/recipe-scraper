@@ -27,11 +27,12 @@ def get_recipe(url):
     output['chinese'] = is_category('chinese',ingredients,title)
     output['italian'] = is_category('italian',ingredients,title)
     return jsonify(output)
-    
+
 @app.route('/_transform/<path:url>/<to_or_from>/<category>')
 def transform(url, to_or_from, category):
     recipe = Team10.scraper.get_recipe(url)
     tr = Team10.transformations.transformations.transform(recipe, category, to_or_from)
+    pprint(tr)
     results = {}
     output = parse_recipe(tr)
 
