@@ -43,7 +43,7 @@ def is_category(category, ingredients, title):
             return False
     return True
 
-# to_category is 'to' or 'from'
+
 def transform(recipe, category, to_or_from, typ=None):
     trans_list = {}
     if category == 'vegetarian' or category == 'vegan':
@@ -70,8 +70,10 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
 
     for i in xrange(len(ingredients)):
 
-        for key,val in transformations.iteritems():
-            if key:
+        for key, val in transformations.iteritems():
+            if key == "":
+                pass
+            else:
                 replace = " or ".join(val) if len(val) > 1 else val[0]
                 ingredients[i] = re.sub(key,replace,ingredients[i].lower())
 
@@ -83,7 +85,6 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
                     ingredients[i] = re.sub(r"crumbled",r"ground",ingredients[i].lower())
 
         final.append(ingredients[i])
-
 
     if typ is "veg":
         if other is "title" and to_or_from is "from" and re.findall(r"vegetarian|vegan", final[0].lower()):
