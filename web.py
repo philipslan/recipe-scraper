@@ -2,6 +2,9 @@ from flask import Flask, render_template, jsonify, request
 import urllib
 import Team10.recipe_api
 from Team10.recipe_api import *
+import Team10.transformations.transformations
+from Team10.transformations.transformations import *
+import Team10.scraper
 
 app = Flask(__name__)
 
@@ -11,8 +14,16 @@ def index():
 
 @app.route('/_recipe_scraper/<path:url>')
 def get_recipe(url):
-    output = jsonify(parse_recipe(url))
-    return output
+    output = parse_recipe(url)
+    print "output"
+    ingredients = Team10.scraper.get_recipe(url)['ingredients']
+    print ingredients
+
+    output['vegetarian'] = is_category('vegetarian',ingredients)
+    output['vegan'] = is_category('vegan',ingredients)
+    output['low_carb'] = is_category('low-carb',ingredients)
+    output['low_sodium'] = is_category('low-sodium',ingredients)
+    return jsonify(output)
     
 # @app.route('/_get_year/<year>')
 # def get_year(year):

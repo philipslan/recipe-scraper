@@ -79,7 +79,7 @@ def autograder(url):
 
     results['cooking tools'] = remove_duplicates(results['cooking tools'])
     
-    if transformations.is_category('vegetarian', recipe['ingredients']):
+    if transformations.is_category('vegetarian', recipe['ingredients'], recipe['title']) == False:
         new_recipe = transformations.transform(recipe,'vegetarian','to')
     else:
         new_recipe = transformations.transform(recipe,'vegetarian','from')

@@ -16,7 +16,7 @@ def load_transformations(category):
     	TRANSFORMATIONS['to'][category] = json.load(f)
         TRANSFORMATIONS['from'][category] = {key: reverse(TRANSFORMATIONS['to'][category][key]) for key in TRANSFORMATIONS['to'][category]}
 
-def is_category(category, ingredients):
+def is_category(category, ingredients, title):
     trans_list = []
     if category == 'vegetarian':
         load_transformations(category)
@@ -33,11 +33,18 @@ def is_category(category, ingredients):
     else:
         print "Category not found"
 
+    if category.lower() in title.lower():
+        return True
+    regex = ""
+    for i,x in enumerate(trans_list):
+        if i == len(trans_list) - 1:
+            regex += x
+        else:    
+            regex += x + "|"
     for ingredient in ingredients:
-        for ing in ingredient.split():
-            if ing in trans_list:
-                return True
-    return False
+        if len(re.findall(regex,ingredient)):
+            return False    
+    return True
 
 # to_category is 'to' or 'from'
 def transform(recipe, category, to_or_from):
@@ -49,19 +56,21 @@ def transform(recipe, category, to_or_from):
         trans_list = TRANSFORMATIONS[to_or_from]['healthy'][category]
         typ = 'healthy'
     for key,value in recipe.iteritems():
-        if key == "title":
-            recipe[key] = transform_helper([value],trans_list, typ, to_or_from)[0]
+        if key == "imageUrl":
+            pass
+        elif key == "title":
+            recipe[key] = transform_helper([value],trans_list, typ, to_or_from, key)[0]
         else:
-            recipe[key] = transform_helper(value,trans_list, typ, to_or_from)
+            recipe[key] = transform_helper(value,trans_list, typ, to_or_from, key)
     return recipe
 
-def transform_helper(ingredients,transformations,typ,to_or_from):
+def transform_helper(ingredients, transformations, typ,to_or_from, other):
     final = []
     original_ingredients = ingredients[:]
     for i in xrange(len(ingredients)):
         for key,val in transformations.iteritems():
             replace = " or ".join(val) if len(val) > 1 else val[0]
-            ingredients[i] = re.sub(key,replace,ingredients[i].lower())
+            ingredients[i] = re.sub(key,replace,ingredients[i])
         if original_ingredients[i] != ingredients[i]:
             if typ == 'veg':
                 if to_or_from == 'to':
@@ -71,4 +80,18 @@ def transform_helper(ingredients,transformations,typ,to_or_from):
             # if typ == 'healthy':
 
         final.append(ingredients[i])
+
+
+
+    if typ == "veg":
+        if other == "title" and re.findall(r"vegetarian|vegan", final[0].lower()):
+            final[0] = re.sub(r"vegetarian |vegan ", "", final[0].lower())
+        elif [i.lower() for i in original_ingredients] == [i.lower() for i in ingredients]: # nothing changed
+            if other == "ingredients":
+                final.append('crumbled bacon')
+            if other == "directions":
+                final.append('Add crumbled bacon on top.')
+
     return final
+
+
