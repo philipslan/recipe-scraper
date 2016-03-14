@@ -17,7 +17,7 @@ Diagrams are in diagrams.pdf and WorkFlow Diagram.pdf
 - BeautifulSoup
 - Flask
 
-## Sources for Ingredients
+## Sources for Knowledge Base
 - Tools: https://en.wikipedia.org/wiki/List_of_food_preparation_utensils
 - Vegan: http://greatist.com/health/21-foolproof-vegan-recipe-substitutions
 - Vegan: http://www.vegkitchen.com/tips/vegan-substitutions/
