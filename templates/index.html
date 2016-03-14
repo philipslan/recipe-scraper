@@ -14,16 +14,16 @@ EECS337: Recipes
         <div class="col-xs-6">
             <div ng-show="parsed">
                 Transform to:<br/>
-    			<select class="form-control" id="category">
-    				<option disabled value=""> -- select an option -- </option>
-    				<option ng-show="!vegetarian">Vegetarian</option>
-    		    	<option ng-show="vegetarian">Non-Vegetarian</option>
-    		    	<option ng-show="!vegan">Vegan</option>
-    		    	<option ng-show="vegan">Non-Vegan</option>
-    		    	<option ng-show="!low-carb">Low-carb</option>
-    		    	<option ng-show="low-carb">Non Low-carb</option>
-    		    	<option ng-show="!low-sodium">Low-sodium</option>
-    		    	<option ng-show="low-sodium">Non Low-sodium</option>
+    			<select class="form-control" id="category" ng-model="transformation" ng-change="transform()">
+    				<option default value=""> -- select an option -- </option>
+    				<option ng-show="!vegetarian" value="to_vegetarian">Vegetarian</option>
+    		    	<option ng-show="vegetarian" value="from_vegetarian">Non-Vegetarian</option>
+    		    	<option ng-show="!vegan" value="to_vegan">Vegan</option>
+    		    	<option ng-show="vegan" value="from_vegetarian">Non-Vegan</option>
+    		    	<option ng-show="!low-carb" value="to_low-carb">Low-carb</option>
+    		    	<option ng-show="low-carb" value="from_low-carb">Non Low-carb</option>
+    		    	<option ng-show="!low-sodium" value="to_low-sodium">Low-sodium</option>
+    		    	<option ng-show="low-sodium" value="from_low-sodium">Non Low-sodium</option>
     			</select>
             </div>
         </div>    

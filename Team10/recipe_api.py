@@ -90,17 +90,22 @@ def autograder(url):
 
 
 
-def parse_recipe(url):
+def parse_recipe_from_url(url):
     '''Accepts the URL for a recipe, and returns a dictionary of the
     parsed results in the correct format. Also returns recipe divided
     into steps which each contain methods, tools and ingredients'''
+
     results = {}
     results['url'] = url
-
+    
     recipe = scraper.get_recipe(url)
     if recipe == None:
         return None
 
+    return parse_recipe(recipe,results)
+    
+
+def parse_recipe(recipe,results):
     unit_measure, regex = ingredients.load_ingredient_data()
     results['ingredients'] = []
     for ing in recipe['ingredients']:
@@ -112,7 +117,6 @@ def parse_recipe(url):
 
     tools_by_step, all_tools = tools.find_tools(recipe['directions'])
     results['cooking tools'] = all_tools
-
 
     for ingredient in results['ingredients']:
         for t in PREPTOOLS:
@@ -129,9 +133,4 @@ def parse_recipe(url):
 
 
     return {'results':results, 'steps':steps, 'imageUrl':recipe['imageUrl'], 'title':recipe['title']}
-
-
-
-
-
 
