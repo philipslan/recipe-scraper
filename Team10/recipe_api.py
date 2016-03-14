@@ -35,7 +35,8 @@ def recipe_by_steps(directions, ingredients, methods_by_step, tools_by_step):
                 if w in d:
                     step_ingredients.append(ingredient['name'])
                     break
-
+                    
+        step['direction'] = d
         step['methods'] = methods_by_step[i]
         step['tools'] = tools_by_step[i]
         step['ingredients'] = step_ingredients
