@@ -1,6 +1,6 @@
 {% extends "base.html"%}
 {% block title %}
-10: Recipe Scraper
+EECS337: Recipes
 {% endblock %}
 
 {% block content %}
@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col-xs-6">
             Enter AllRecipes URL<br/>
-            <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:300px;padding:5px;outline:none;" ng-init="url='http://allrecipes.com/Recipe/Easy-Garlic-Broiled-Chicken/'"><br/>
-            <button type="submit", style="width:300px;" ng-click="getRecipe()">Go</button>
+            <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:400px;padding:5px;outline:none;" ng-init="url='http://allrecipes.com/Recipe/Easy-Garlic-Broiled-Chicken/'"><br/>
+            <button type="submit", style="width:400px;" ng-click="getRecipe()">Go</button>
         </div>    
         <div class="col-xs-6">
             <div ng-show="parsed">
@@ -30,7 +30,7 @@
     </div>
 
     
-    <div ng-show="parsed" style="margin-top:20px;background:url({{'{{imageUrl}}'}}); height:450px;overflow-y:scroll;background-size:cover; overflow-x: hidden;margin-bottom:50px;">
+    <div ng-show="parsed" style="margin-top:20px;background:url({{'{{imageUrl}}'}}); height:500px;overflow-y:scroll;background-size:cover; overflow-x: hidden;margin-bottom:50px;">
         <h2 style="margin-top: 0;background: rgba(0,0,0,0.5);color: white;padding: 20px;margin-bottom: 0;">{{'{{title}}'}} <span style="font-size:16px;">({{'{{getAttributes()}}'}})</span></h2>
         <div style="padding:20px;padding-bottom:60px;background:rgba(255,255,255,0.8);">
             <h3 style="margin-top:0;">Ingredients</h3>
