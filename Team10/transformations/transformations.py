@@ -49,14 +49,15 @@ def transform(recipe, category, to_or_from):
         trans_list = TRANSFORMATIONS[to_or_from]['healthy'][category]
         typ = 'healthy'
     for key,value in recipe.iteritems():
-        if key == "title":
+        if key == "imageUrl":
+            pass
+        elif key == "title":
             recipe[key] = transform_helper([value],trans_list, typ, to_or_from, key)[0]
         else:
             recipe[key] = transform_helper(value,trans_list, typ, to_or_from, key)
     return recipe
 
 def transform_helper(ingredients, transformations, typ,to_or_from, other):
-    ingredients = [i.lower() for i in ingredients]
     final = []
     original_ingredients = ingredients[:]
     for i in xrange(len(ingredients)):
@@ -66,20 +67,23 @@ def transform_helper(ingredients, transformations, typ,to_or_from, other):
         if original_ingredients[i] != ingredients[i]:
             if typ == 'veg':
                 if to_or_from == 'to':
-                    ingredients[i] = re.sub("ground","crumbled",ingredients[i])
+                    ingredients[i] = re.sub("ground","crumbled",ingredients[i].lower())
                 else:
-                    ingredients[i] = re.sub("crumbled","ground",ingredients[i])
+                    ingredients[i] = re.sub("crumbled","ground",ingredients[i].lower())
             # if typ == 'healthy':
 
         final.append(ingredients[i])
 
-    if other == "title" and typ == "veg" and re.findall(r"vegetarian|vegan", final[0].lower()):
-        final[0] = re.sub(r"vegetarian |vegan ", "", final[0].lower())
-    elif original_ingredients == ingredients and typ == 'veg': # nothing changed
-        if other == "ingredients":
-            final.append('crumbled bacon')
-        if other == "directions":
-            final.append('Add crumbled bacon on top.')
+
+
+    if typ == "veg":
+        if other == "title" and re.findall(r"vegetarian|vegan", final[0].lower()):
+            final[0] = re.sub(r"vegetarian |vegan ", "", final[0].lower())
+        elif [i.lower() for i in original_ingredients] == [i.lower() for i in ingredients]: # nothing changed
+            if other == "ingredients":
+                final.append('crumbled bacon')
+            if other == "directions":
+                final.append('Add crumbled bacon on top.')
 
     return final
 
