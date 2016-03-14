@@ -11,7 +11,8 @@ $python web.py
 4\. Open Chrome browser at localhost:5000 (transformation select is slightly wonky in Safari)
 
 ## Diagrams
-Diagrams are in diagrams.pdf and WorkFlow Diagram.pdf
+Recipe structure and KB diagrams are in diagrams.pdf<br/>
+Workflow diagram is in WorkFlow Diagram.pdf
 
 ## Dependencies:
 - BeautifulSoup
