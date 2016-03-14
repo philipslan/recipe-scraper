@@ -42,13 +42,13 @@ def is_category(category, ingredients):
 # to_category is 'to' or 'from'
 def transform(recipe, category, to_or_from):
     trans_list = []
-    if category is 'vegetarian' or category is vegan:
+    if category is 'vegetarian' or category is 'vegan':
         trans_list = TRANSFORMATIONS[to_or_from][category]['trans']
         for key,value in recipe.iteritems():
             if key == "title":
-                recipe[key] = transform_helper([value],trans_list)[0]
+                recipe[key] = veg_transform_helper([value],trans_list)[0]
             else:
-                recipe[key] = transform_helper(value,trans_list)
+                recipe[key] = veg_transform_helper(value,trans_list)
         pprint(recipe)
 
     elif category is 'low-carb' or category == 'low-sodium':
@@ -58,11 +58,12 @@ def transform(recipe, category, to_or_from):
     
     # return transformed_recipe
 
-def transform_helper(ingredients,transformations):
+def veg_transform_helper(ingredients,transformations):
     final = []
     for ingredient in ingredients:
         for key,val in transformations.iteritems():
             replace = " or ".join(val) if len(val) > 1 else val[0]
             ingredient = re.sub(key,replace,ingredient.lower())
+        ingredient = re.sub("ground","crumbled",ingredient.lower())
         final.append(ingredient)
     return final

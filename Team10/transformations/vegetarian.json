@@ -25,9 +25,5 @@
 		"rabbit": ["jackfruit"],
 		"moose": ["seitan"],
 		"chicken broth": ["vegetable soup"]
-	},
-	"methods": {
-		"ground": ["crumbled"],
-		"grounded": ["crumbled"]
 	}
 }
