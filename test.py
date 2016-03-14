@@ -1,6 +1,6 @@
 from Team10 import recipe_api
 
-recipe_api.autograder("http://allrecipes.com/recipe/90089/penne-with-chicken-and-asparagus/?internalSource=recipe%20hub&referringId=1788&referringContentType=recipe%20hub")
+recipe_api.autograder("http://allrecipes.com/recipe/36002/bbq-steak/?internalSource=search%20result&referringContentType=search%20results")
 
 
 

@@ -72,6 +72,7 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
             replace = " or ".join(val) if len(val) > 1 else val[0]
             ingredients[i] = re.sub(key,replace,ingredients[i].lower())
 
+
         if original_ingredients[i] != ingredients[i]:
             if typ == 'veg':
                 if to_or_from == 'to':
