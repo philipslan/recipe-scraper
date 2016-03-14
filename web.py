@@ -6,6 +6,7 @@ import Team10.transformations.transformations
 from Team10.transformations.transformations import *
 import Team10.scraper
 from pprint import pprint
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -32,7 +33,8 @@ def transform(url, to_or_from, category):
     recipe = Team10.scraper.get_recipe(url)
     tr = Team10.transformations.transformations.transform(recipe, category, to_or_from)
     results = {}
-    output = parse_recipe(tr, results)
+    output = parse_recipe(tr)
+
     ingredients = tr['ingredients']
     title = tr['title']
     output['vegetarian'] = is_category('vegetarian',ingredients,title)
