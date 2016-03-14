@@ -48,12 +48,17 @@ def autograder(url):
     '''Accepts the URL for a recipe, and returns a dictionary of the
     parsed results in the correct format. See project sheet for
     details on correct format.'''
-    results = {}
-    results['url'] = url
-
+    
     recipe = scraper.get_recipe(url)
     if recipe == None:
         return None
+        
+    # obj = parse_recipe(recipe)
+    # results = obj['results']
+    # results['url'] = url
+    # return results
+    
+    results = {'url':url}
 
     unit_measure, regex = ingredients.load_ingredient_data()
     results['ingredients'] = []
