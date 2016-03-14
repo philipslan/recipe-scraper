@@ -68,7 +68,7 @@ def find_all_methods(title, directions):
 	# acquire all the cooking methods present in the directions (may have repeated ones)
 	for step in directions:
 		cooking_methods.extend(find_methods(step))
-		methods_by_step.append([find_methods(step)])
+		methods_by_step.append(find_methods(step))
 
 	title_list = title.lower().split(' ')
 	for word in title_list:

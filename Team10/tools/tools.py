@@ -39,7 +39,7 @@ def find_tools(steps):
     #  "skillet" was in step 1, remove "skillet" as from tools
     #  as they're likely referring to the same thing
     
-    return all_tools
+    return tools_by_step, all_tools
     
     
 def tools_for_step(step):
