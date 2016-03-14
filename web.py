@@ -9,10 +9,14 @@ app = Flask(__name__)
 def index():
 	return render_template('index.html')
 
-@app.route('/_recipe_scraper/<url>')
-def get_year(url):
-	final_url = urllib.unquote(url).decode('utf-8')
-	return jsonify(parse_recipe(final_url))
+@app.route('/_recipe_scraper/<path:url>')
+def get_recipe(url):
+    # return jsonify({'a':2})
+    print "before parse"
+    output = jsonify(parse_recipe(url))
+    print "after parse"
+    return output
+    
 # @app.route('/_get_year/<year>')
 # def get_year(year):
 # 	get_tweets(year)
