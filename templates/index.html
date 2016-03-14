@@ -7,15 +7,19 @@ EECS337: Recipes
 <div ng-controller="homeController">
     <div class="row">
         <div class="col-xs-6">
-            Enter AllRecipes URL<br/>
-            <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:400px;padding:5px;outline:none;" ng-init="url='http://allrecipes.com/Recipe/Easy-Garlic-Broiled-Chicken/'"><br/>
-            <button type="submit", style="width:400px;" ng-click="getRecipe()">Go</button>
+            <label>Enter AllRecipes URL</label>
+            <div class="col-xs-11" style="padding:0">
+                <div class="input-group">
+                    <input input type="text" class="form-control" ng-model="url" placeholder="http://allrecipes.com/chicken" ng-init="url='http://allrecipes.com/Recipe/Easy-Garlic-Broiled-Chicken/'" style="border-top:1px">
+                    <span class="input-group-addon" ng-click="getRecipe()" type="submit" style="cursor: pointer">Go</span>
+                </div>
+            </div>
         </div>    
         <div class="col-xs-6">
             <div ng-show="parsed">
-                Transform to:<br/>
-    			<select class="form-control" id="category" ng-model="transformation" ng-change="transform()">
-    				<option default value=""> -- select an option -- </option>
+                <label>Transform to:</label>
+    			<select class="form-control" id="category" ng-model="transformation" ng-change="transform()" style="border-top:1px">
+    				<option disabled value=""> -- select an option -- </option>
     				<option ng-show="!vegetarian" value="to_vegetarian">Vegetarian</option>
     		    	<option ng-show="vegetarian" value="from_vegetarian">Non-Vegetarian</option>
     		    	<option ng-show="!vegan" value="to_vegan">Vegan</option>
@@ -32,12 +36,18 @@ EECS337: Recipes
             </div>
         </div>        
     </div>
-    
-    <img src="http://sierrafire.cr.usgs.gov/images/loading.gif" ng-show="loading" style="height: 150px;margin: 0 auto;display: block;"/>
-
-    
+    <img src="http://www.lettersmarket.com/uploads/lettersmarket/blog/loaders/common_metal/ajax_loader_metal_512.gif" ng-show="loading && !parsed" style="height: 50px;margin: 0 auto;display: block;"/>
     <div ng-show="parsed" style="margin-top:20px;background:url({{'{{imageUrl}}'}}); height:500px;overflow-y:scroll;background-size:cover; overflow-x: hidden;margin-bottom:50px;">
-        <h2 style="margin-top: 0;background: rgba(0,0,0,0.5);color: white;padding: 20px;margin-bottom: 0;">{{'{{title.toTitleCase()}}'}} <span style="font-size:16px;">({{'{{getAttributes()}}'}})</span></h2>
+        <div class="row" style="background: rgba(0,0,0,0.5);">
+            <div class="col-xs-10">
+                <h2 style="margin: 0;color: white;padding: 20px;">
+                    {{'{{title.toTitleCase()}}'}} <span style="font-size:16px;">({{'{{getAttributes()}}'}})</span>
+                </h2>
+            </div>
+            <div class="col-xs-2">
+                <img src="http://www.lettersmarket.com/uploads/lettersmarket/blog/loaders/common_metal/ajax_loader_metal_512.gif" ng-show="loading" style="height: 50px;top:12px;margin: 0 auto;display: block;z-index: 500; position:relative;"/>
+            </div>
+        </div>
         <div style="padding:20px;padding-bottom:60px;background:rgba(255,255,255,0.8);">
             <h3 style="margin-top:0;">Ingredients</h3>
             <table class="table table-striped">
