@@ -28,6 +28,7 @@ recipe.controller('homeController', function ($scope,$http) {
             $scope.vegan = response['vegan'];
             $scope.low_carb = response['low-carb'];
             $scope.low_sodium = response['low-sodium'];
+            $scope.title = response['title'];
             $scope.imageUrl = response['imageUrl'];
             $scope.parsed = true;
  
