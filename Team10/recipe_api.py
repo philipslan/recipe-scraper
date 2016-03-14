@@ -85,7 +85,7 @@ def autograder(url):
         new_recipe = transformations.transform(recipe,'vegetarian','from')
     
     # pprint(results)
-
+    pprint(new_recipe)
     return results
     
     
