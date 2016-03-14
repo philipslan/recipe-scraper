@@ -33,8 +33,13 @@ def parse_ingredients(entry, units_measure, prep_regex):
 	### finding measurement  ###
 	measurement = ''
 	for i,val in enumerate(entry_list):
-		if val in units_measure:
-			measurement= entry_list.pop(i)
+		if val.strip(')').strip('(') in units_measure:
+			if val.find('(') == -1 and val.find(')') == -1:
+				print 'if', entry_list[i]
+				measurement= entry_list.pop(i).strip(')').strip('(')
+			else:
+				print 'else', entry_list[i]
+				measurement= entry_list[i].strip(')').strip('(')
 			break
 	if not measurement:
 		measurement = "units"
@@ -68,29 +73,28 @@ def get_name(in_list):
 		lis = in_list[0]
 	else:
 		lis = in_list[0][:len(in_list[0])-1]
+	if ' '.join(lis).find('garlic powder') != -1:
+		return 'garlic powder','powder'
 	temp = nltk.pos_tag(lis,tagset="universal")
-	output_list1 = []
-	output_list2 = []
-
+	output_list1 = [] # names
+	output_list2 = [] # descriptor
 	for val in temp:
 		if val[1] == 'ADP':
 			break
 		elif val[1] != 'VERB' and val[1] != 'PRT' and val[1] != 'ADJ' and val[1] != 'NUM':
+			print val[1], val[0]
 			output_list1.append(val[0])
 		elif val[1] != 'NUM':
 			output_list2.append(val)
-
 	if output_list1:
 		output1 = ' '.join(output_list1).strip().strip(',')
 	elif len(lis) <= 2:
-		output1 =  ' '.join(lis).strip().strip(',')
+		output1 =  ' '.join([t[0] for t in temp if t[1] != 'NUM']).strip().strip(',')
 	else:
-		output1 = ' '.join(lis).strip().strip(',')
-
+		output1 = ' '.join([t[0] for t in temp if t[1] != 'NUM']).strip().strip(',')
 	for val in output_list2:
 		if val[1] != 'NUM':
 			output2 = val[0]
-
 	if output_list2:
 		return output1,output_list2[0][0].strip().strip(',')
 	for val in temp:
@@ -144,6 +148,18 @@ def all_possible_combinations(before, noun, after):
 	return output
 
 def preprocess(entry_list):
+	# remove parentheses
+	for i,val in enumerate(entry_list):
+		if val.find('(')!= -1:
+			for j in xrange(i+1,len(entry_list)):
+				if entry_list[j].find(')') != -1:
+					entry_list = entry_list[:i] + entry_list[j+1:]
+					break
+				else:
+					j = 0
+			if j==0:
+				entry_list.pop(i)
+			break
 	output_before = []
 	output_after = []
 	for i,val in enumerate(entry_list):
