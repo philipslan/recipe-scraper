@@ -1,4 +1,5 @@
 ## How to Use
+Clone repository
 Navigate to root directory in terminal
 ```bash
 $virtualenv venv
