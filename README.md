@@ -11,7 +11,8 @@ $python web.py
 4\. Open browser at localhost:5000
 
 ## Dependencies:
-BeautifulSoup
+- BeautifulSoup
+- Flask
 
 ## Sources for Ingredients
 - Tools: https://en.wikipedia.org/wiki/List_of_food_preparation_utensils
