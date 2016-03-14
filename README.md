@@ -8,7 +8,7 @@ $source venv/bin/activate
 $pip install -r requirements.txt
 $python web.py
 ```
-4\. Open browser at localhost:5000
+4\. Open Chrome browser at localhost:5000 (transformation select is slightly wonky in Safari)
 
 ## Diagrams
 Diagrams are in diagrams.pdf and WorkFlow Diagram.pdf
