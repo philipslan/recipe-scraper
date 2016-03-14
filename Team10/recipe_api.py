@@ -53,45 +53,9 @@ def autograder(url):
     if recipe == None:
         return None
         
-    # obj = parse_recipe(recipe)
-    # results = obj['results']
-    # results['url'] = url
-    # return results
-    
-    results = {'url':url}
-
-    unit_measure, regex = ingredients.load_ingredient_data()
-    results['ingredients'] = []
-    for ing in recipe['ingredients']:
-        results['ingredients'].append(ingredients.parse_ingredients(ing, unit_measure, regex))
-
-    primary_cooking_methods, methods_by_step, cooking_methods = methods.find_all_methods(recipe['title'],recipe['directions'])
-    results['primary cooking method'] = primary_cooking_methods
-    results['cooking methods'] = cooking_methods
-
-    tools_by_step, all_tools = tools.find_tools(recipe['directions'])
-    results['cooking tools'] = all_tools
-
-    for ingredient in results['ingredients']:
-        for t in PREPTOOLS:
-            if ingredient['preparation'] in PREPTOOLS[t]:
-                results['cooking tools'].append(t)
-
-    for method in results['cooking methods']:
-        for t in METHODTOOLS:
-            if method in METHODTOOLS[t]:
-                results['cooking tools'].append(t)
-
-    results['cooking tools'] = remove_duplicates(results['cooking tools'])
-
-    if transformations.is_category('vegetarian', recipe['ingredients'], recipe['title']) == False:
-        new_recipe = transformations.transform(recipe,'vegetarian','to')
-        parse_recipe(new_recipe,{})
-    else:
-        new_recipe = transformations.transform(recipe,'vegetarian','from')
-
-    # pprint(results)
-    pprint(new_recipe)
+    obj = parse_recipe(recipe)
+    results = obj['results']
+    results['url'] = url
     return results
 
 
