@@ -10,6 +10,9 @@ $python web.py
 ```
 4\. Open browser at localhost:5000
 
+## Diagrams
+Diagrams are in diagrams.pdf and WorkFlow Diagram.pdf
+
 ## Dependencies:
 - BeautifulSoup
 - Flask
