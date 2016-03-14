@@ -5,15 +5,13 @@
 
 {% block content %}
 <div ng-controller="homeController">
-<h1 style="text-align: center">Team 10 Recipe Scraper</h1>
+	<h1 style="text-align: center">Team 10 Recipe Scraper</h1>
 	<hr>
     Enter AllRecipes URL<br/>
     <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:300px;padding:5px;outline:none;" ng-init="url='http://allrecipes.com/Recipe/Easy-Garlic-Broiled-Chicken/'"><br/>
     <button type="submit", style="width:300px;" ng-click="getRecipe()">Go</button>
     
-    
     <div ng-show="parsed">
-        <h3>Ingredients</h3>
         <table class="table table-striped">
         	<thead>
 				<tr>
@@ -55,6 +53,17 @@
                 </div>   
             </div>
         </div>
+    </div>
+    <div ng-hide="!parsed">
+    	<h3>Attributes</h3>
+    	<div ng-show="vegetarian">Vegetarian</div>
+    	<div ng-show="!vegetarian">Not Vegetarian</div>
+    	<div ng-show="vegan">Vegan</div>
+    	<div ng-show="!vegan">Not Vegan</div>
+    	<div ng-show="low-carb">Low-carb</div>
+    	<div ng-show="!low-carb">Not Low-carb</div>
+    	<div ng-show="low-sodium">Low-sodium</div>
+    	<div ng-show="!low-sodium">Not Low-sodium</div>
     </div>
     
 <!-- 		<div class="col-lg-6" ng-show="!working">

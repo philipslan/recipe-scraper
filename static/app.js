@@ -20,10 +20,15 @@ recipe.controller('homeController', function ($scope,$http) {
         }).success(function(response){
             $scope.steps = response.steps;
             $scope.recipe = response.results;
-            $scope.ingredients = JSON.stringify(response['results']['ingredients']);
+            $scope.ingredients = response['results']['ingredients'];
             $scope.primary_method = response['results']['primary cooking method'];
             $scope.methods = response['results']['cooking methods'];
             $scope.tools = response['results']['cooking tools'];
+            $scope.vegetarian = response['vegetarian'];
+            $scope.vegan = response['vegan'];
+            $scope.low_carb = response['low-carb'];
+            $scope.low_sodium = response['low-sodium'];
+
             $scope.parsed = true;
  
     });
