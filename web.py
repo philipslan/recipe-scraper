@@ -16,13 +16,14 @@ def index():
 def get_recipe(url):
     output = parse_recipe(url)
     print "output"
-    ingredients = Team10.scraper.get_recipe(url)['ingredients']
-    print ingredients
+    recipe = Team10.scraper.get_recipe(url)
+    ingredients = recipe['ingredients']
+    title = recipe['title']
 
-    output['vegetarian'] = is_category('vegetarian',ingredients)
-    output['vegan'] = is_category('vegan',ingredients)
-    output['low_carb'] = is_category('low-carb',ingredients)
-    output['low_sodium'] = is_category('low-sodium',ingredients)
+    output['vegetarian'] = is_category('vegetarian',ingredients,title)
+    output['vegan'] = is_category('vegan',ingredients,title)
+    output['low_carb'] = is_category('low-carb',ingredients,title)
+    output['low_sodium'] = is_category('low-sodium',ingredients,title)
     return jsonify(output)
     
 # @app.route('/_get_year/<year>')
