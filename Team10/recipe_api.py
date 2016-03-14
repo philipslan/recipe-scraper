@@ -79,10 +79,10 @@ def autograder(url):
 
     results['cooking tools'] = remove_duplicates(results['cooking tools'])
 
-    if transformations.is_category('vegan', recipe['ingredients'], recipe['title']) == False:
-        new_recipe = transformations.transform(recipe,'vegan','to')
+    if transformations.is_category('vegetarian', recipe['ingredients'], recipe['title']) == False:
+        new_recipe = transformations.transform(recipe,'vegetarian','to')
     else:
-        new_recipe = transformations.transform(recipe,'vegan','from')
+        new_recipe = transformations.transform(recipe,'vegetarian','from')
 
     # pprint(results)
     pprint(new_recipe)
@@ -97,13 +97,13 @@ def parse_recipe_from_url(url):
 
     results = {}
     results['url'] = url
-    
+
     recipe = scraper.get_recipe(url)
     if recipe == None:
         return None
 
     return parse_recipe(recipe,results)
-    
+
 
 def parse_recipe(recipe,results):
     unit_measure, regex = ingredients.load_ingredient_data()

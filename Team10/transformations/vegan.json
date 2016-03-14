@@ -2,6 +2,13 @@
 	"trans": {
 		"milk": ["soy milk"],
 		"cheese": ["soy cheese"],
+		"blue cheese": ["soy cheese"],
+		"feta cheese": ["soy cheese"],
+		"american cheese": ["soy cheese"],
+		"provolone": ["soy cheese"],
+		"mozzarella cheese": ["soy cheese"],
+		"american cheese": ["soy cheese"],
+		"parmesan cheese": ["soy cheese"],
 		"eggs": ["vegan egg substitute"],
 		"butter": ["coconut butter", "margarine"],
 		"honey": ["maple syrup"],

@@ -70,13 +70,10 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
 
     for i in xrange(len(ingredients)):
 
-        if 'cheese' in ingredients[i]:
-            print ingredients[i]
-
         for key,val in transformations.iteritems():
-            replace = " or ".join(val) if len(val) > 1 else val[0]
-            ingredients[i] = re.sub(key,replace,ingredients[i].lower())
-
+            if key:
+                replace = " or ".join(val) if len(val) > 1 else val[0]
+                ingredients[i] = re.sub(key,replace,ingredients[i].lower())
 
         if original_ingredients[i] != ingredients[i]:
             if typ == 'veg':
