@@ -68,7 +68,24 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
     final = []
     original_ingredients = ingredients[:]
 
+    # detect cheese + descriptor
+    if category == "chinese" or category == "vegan":
+        cheeses = [r"swiss", r"feta", r"blue", r"american", r"provolone", r"mozzarella",
+        r"parmesan", r"asiago", r"carmody", r"cheddar", r"colby", r"cotija", r"edam",
+        r"enchilado", r"fontina", r"gouda", r"havarti", r"longhorn"]
+
     for i in xrange(len(ingredients)):
+        if re.findall(r'cheese', ingredients[i], re.I):
+            if category == "chinese" and to_or_from == "to":
+                ingredients[i] = re.sub(r' cheese', r'', ingredients[i].lower())
+                for cheese in cheeses:
+                    regex = " and " + cheese + "|, " + cheese + "|" + cheese + " |" + cheese + ", "
+                    ingredients[i] = re.sub(regex, r'', ingredients[i].lower())
+            elif category == "vegan" and to_or_from == "to":
+                ingredients[i] = re.sub(r'cheese', r'soy cheese', ingredients[i].lower())
+                for cheese in cheeses:
+                    regex = " and " + cheese + "|, " + cheese + "|" + cheese + " |" + cheese + ", "
+                    ingredients[i] = re.sub(regex, r'', ingredients[i].lower())
 
         for key, val in transformations.iteritems():
             if key == "":
@@ -79,6 +96,7 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
         # Getting rid of commas and double spaces in ingredients
         if other == "ingredients":
             ingredients[i] = re.sub("  |, "," ",ingredients[i])
+            original_ingredients[i] = ingredients[i]
         if original_ingredients[i] != ingredients[i]:
             if typ == 'veg':
                 if to_or_from == 'to':
@@ -91,6 +109,7 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
     if typ is "veg":
         if other is "title" and to_or_from is "from" and re.findall(r"vegetarian|vegan", final[0].lower()):
             final[0] = re.sub(r"vegetarian |vegan ", "", final[0].lower())
+
         elif [i.lower() for i in original_ingredients] == [i.lower() for i in ingredients]: # nothing changed
             if other is "ingredients":
                 final.append('crumbled bacon')
@@ -105,7 +124,6 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
         else:
             final[0] = category + " " + final[0]
             final[0] = final[0].title()
-
 
     return final
 

@@ -1,6 +1,11 @@
 from Team10 import recipe_api
+from pprint import pprint
+import Team10.scraper
+from Team10.transformations.transformations import *
 
-recipe_api.autograder("http://allrecipes.com/recipe/80827/easy-garlic-broiled-chicken/?internalSource=search%20result&referringContentType=search%20results")
+recipe = (Team10.scraper.get_recipe("http://allrecipes.com/recipe/45696/da-beef-lovers-half-time-stuffed-meatloaf/?internalSource=staff%20pick&referringId=256&referringContentType=recipe%20hub"))
 
-
-
+if is_category('vegan',recipe['ingredients'],recipe['title']) == False:
+	pprint(transform(recipe,"vegan","to"))
+else:
+	pprint(transform(recipe,"vegan","from"))

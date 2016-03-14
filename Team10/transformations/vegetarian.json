@@ -8,6 +8,7 @@
 		"pork": ["jackfruit"],
 		"bacon": ["veggie bacon"],
 		"sausage": ["seitan"],
+		"salami": ["veggie salami"],
 		"ham": ["seitan"],
 		"veal": ["seitan"],
 		"fish": ["tempeh"],
@@ -34,6 +35,10 @@
 		"with skin": [""],
 		"leg[s]": [""],
 		"drumstick[s]": [""],
-		"belly": [""]
+		"belly": [""],
+		" round": [" "],
+		"sirloin": [""],
+		"pepperoni": ["veggie pepperoni"],
+		"salami": ["veggie salami"]
 	}
 }
