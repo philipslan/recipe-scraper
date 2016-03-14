@@ -31,16 +31,43 @@ recipe.controller('homeController', function ($scope,$http) {
             $scope.title = response['title'];
             $scope.imageUrl = response['imageUrl'];
             $scope.parsed = true;
-    });
+        });
   }
   
   $scope.getAttributes = function() {
       var vegetarianAttr = $scope.vegetarian ? "vegetarian" : "non-vegetarian"
       var veganAttr = $scope.vegan ? "vegan" : "non-vegan"
-      var lowCarbAttr = $scope.low_carb ? "low-carb" : "non-low-carb"
-      var lowSodiumAttr = $scope.low_sodium ? "low-sodium" : "non-low-sodium"
+      var lowCarbAttr = $scope.low_carb ? "low-carb" : "non low-carb"
+      var lowSodiumAttr = $scope.low_sodium ? "low-sodium" : "non low-sodium"
       
       return [vegetarianAttr,veganAttr,lowCarbAttr,lowSodiumAttr].join(", ")
+  }
+  
+  $scope.transform = function() {
+      var params = $scope.transformation.split('_');
+      var to_or_from = params[0];
+      var category = params[1];
+      var path = '/_transform/' + JSON.stringify($scope.recipe) + '/' + to_or_from + '/' + category;
+      
+      $http({
+        url:$SCRIPT_ROOT + path,
+        method: "GET"
+      }).success(function(response){
+          $scope.steps = response.steps;
+          $scope.recipe = response.results;
+          $scope.ingredients = response['results']['ingredients'];
+          $scope.primary_method = response['results']['primary cooking method'];
+          $scope.methods = response['results']['cooking methods'];
+          $scope.tools = response['results']['cooking tools'];
+          $scope.vegetarian = response['vegetarian'];
+          $scope.vegan = response['vegan'];
+          $scope.low_carb = response['low-carb'];
+          $scope.low_sodium = response['low-sodium'];
+          $scope.title = response['title'];
+          $scope.imageUrl = response['imageUrl'];
+          $scope.parsed = true;
+      });
+      
   }
   
   
