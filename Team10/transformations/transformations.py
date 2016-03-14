@@ -44,21 +44,18 @@ def transform(recipe, category, to_or_from):
     trans_list = []
     if category is 'vegetarian' or category is 'vegan':
         trans_list = TRANSFORMATIONS[to_or_from][category]['trans']
-        for key,value in recipe.iteritems():
-            if key == "title":
-                recipe[key] = veg_transform_helper([value],trans_list)[0]
-            else:
-                recipe[key] = veg_transform_helper(value,trans_list)
-        pprint(recipe)
-
+        typ = 'veg'
     elif category is 'low-carb' or category == 'low-sodium':
         trans_list = TRANSFORMATIONS[to_or_from]['healthy'][category]
-    else:
-        print "Category not found"
+        typ = 'healthy'
+    for key,value in recipe.iteritems():
+        if key == "title":
+            recipe[key] = transform_helper([value],trans_list, typ, to_or_from)[0]
+        else:
+            recipe[key] = transform_helper(value,trans_list, typ, to_or_from)
+    return recipe
 
-    # return transformed_recipe
-
-def veg_transform_helper(ingredients,transformations):
+def transform_helper(ingredients,transformations,typ,to_or_from):
     final = []
     original_ingredients = ingredients[:]
     for i in xrange(len(ingredients)):
@@ -66,6 +63,12 @@ def veg_transform_helper(ingredients,transformations):
             replace = " or ".join(val) if len(val) > 1 else val[0]
             ingredients[i] = re.sub(key,replace,ingredients[i].lower())
         if original_ingredients[i] != ingredients[i]:
-            ingredients[i] = re.sub("ground","crumbled",ingredients[i].lower())
+            if typ == 'veg':
+                if to_or_from == 'to':
+                    ingredients[i] = re.sub("ground","crumbled",ingredients[i].lower())
+                else:
+                    ingredients[i] = re.sub("crumbled","ground",ingredients[i].lower())
+            # if typ == 'healthy':
+
         final.append(ingredients[i])
     return final
