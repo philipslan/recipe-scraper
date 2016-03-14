@@ -79,7 +79,7 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
             if category == "chinese" and to_or_from == "to":
                 ingredients[i] = re.sub(r' cheese', r'', ingredients[i].lower())
                 for cheese in cheeses:
-                    regex = " and " + cheese + "|, " + cheese + "|" + cheese + " |" + cheese + ", "
+                    regex = " and " + cheese + "|, " + cheese + "|" + cheese + " |" + cheese + ", |"+ cheese
                     ingredients[i] = re.sub(regex, r'', ingredients[i].lower())
             elif category == "vegan" and to_or_from == "to":
                 ingredients[i] = re.sub(r'cheese', r'soy cheese', ingredients[i].lower())
