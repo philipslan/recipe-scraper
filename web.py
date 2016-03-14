@@ -23,6 +23,8 @@ def get_recipe(url):
     output['vegan'] = is_category('vegan',ingredients,title)
     output['low_carb'] = is_category('low-carb',ingredients,title)
     output['low_sodium'] = is_category('low-sodium',ingredients,title)
+    output['chinese'] = is_category('chinese',ingredients,title)
+    output['italian'] = is_category('italian',ingredients,title)
     return jsonify(output)
     
 @app.route('/_transform/<path:url>/<to_or_from>/<category>')
@@ -38,6 +40,8 @@ def transform(url, to_or_from, category):
     output['vegan'] = is_category('vegan',ingredients,title)
     output['low_carb'] = is_category('low-carb',ingredients,title)
     output['low_sodium'] = is_category('low-sodium',ingredients,title)
+    output['chinese'] = is_category('chinese',ingredients,title)
+    output['italian'] = is_category('italian',ingredients,title)
     return jsonify(output)
 
 

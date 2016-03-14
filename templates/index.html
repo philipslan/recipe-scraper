@@ -12,7 +12,7 @@ EECS337: Recipes
             <button type="submit", style="width:400px;" ng-click="getRecipe()">Go</button>
         </div>    
         <div class="col-xs-6">
-            <div ng-show="parsed">
+            <div ng-show="parsed && !transformed">
                 Transform to:<br/>
     			<select class="form-control" id="category" ng-model="transformation" ng-change="transform()">
     				<option default value=""> -- select an option -- </option>
@@ -24,6 +24,10 @@ EECS337: Recipes
     		    	<option ng-show="low-carb" value="from_low-carb">Non Low-carb</option>
     		    	<option ng-show="!low-sodium" value="to_low-sodium">Low-sodium</option>
     		    	<option ng-show="low-sodium" value="from_low-sodium">Non Low-sodium</option>
+    		    	<option ng-show="!chinese" value="to_chinese">Chinese</option>
+    		    	<option ng-show="chinese" value="from_chinese">Non-Chinese</option>
+    		    	<option ng-show="!italian" value="to_italian">Italian</option>
+    		    	<option ng-show="italian" value="from_italian">Non-Italian</option>
     			</select>
             </div>
         </div>    
@@ -32,7 +36,7 @@ EECS337: Recipes
 
     
     <div ng-show="parsed" style="margin-top:20px;background:url({{'{{imageUrl}}'}}); height:500px;overflow-y:scroll;background-size:cover; overflow-x: hidden;margin-bottom:50px;">
-        <h2 style="margin-top: 0;background: rgba(0,0,0,0.5);color: white;padding: 20px;margin-bottom: 0;">{{'{{title}}'}} <span style="font-size:16px;">({{'{{getAttributes()}}'}})</span></h2>
+        <h2 style="margin-top: 0;background: rgba(0,0,0,0.5);color: white;padding: 20px;margin-bottom: 0;">{{'{{title.toTitleCase()}}'}} <span style="font-size:16px;">({{'{{getAttributes()}}'}})</span></h2>
         <div style="padding:20px;padding-bottom:60px;background:rgba(255,255,255,0.8);">
             <h3 style="margin-top:0;">Ingredients</h3>
             <table class="table table-striped">

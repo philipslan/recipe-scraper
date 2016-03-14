@@ -4,8 +4,13 @@ String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+String.prototype.toTitleCase = function() {
+    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 recipe.controller('homeController', function ($scope,$http) {
     $scope.parsed = false;
+    $scope.transformed = false;
     
     $scope.capitalizeFirst = function(str) {
         str[0] = str[0].toUpperCase();
@@ -28,17 +33,20 @@ recipe.controller('homeController', function ($scope,$http) {
             $scope.vegan = response['vegan'];
             $scope.low_carb = response['low-carb'];
             $scope.low_sodium = response['low-sodium'];
+            $scope.chinese = response['chinese'];
+            $scope.italian = response['italian'];
             $scope.title = response['title'];
             $scope.imageUrl = response['imageUrl'];
             $scope.parsed = true;
+            $scope.transformed = false;
         });
   }
   
   $scope.getAttributes = function() {
-      var vegetarianAttr = $scope.vegetarian ? "vegetarian" : "non-vegetarian"
-      var veganAttr = $scope.vegan ? "vegan" : "non-vegan"
-      var lowCarbAttr = $scope.low_carb ? "low-carb" : "non low-carb"
-      var lowSodiumAttr = $scope.low_sodium ? "low-sodium" : "non low-sodium"
+      var vegetarianAttr = $scope.vegetarian ? "vegetarian" : "non-vegetarian";
+      var veganAttr = $scope.vegan ? "vegan" : "non-vegan";
+      var lowCarbAttr = $scope.low_carb ? "low-carb" : "non low-carb";
+      var lowSodiumAttr = $scope.low_sodium ? "low-sodium" : "non low-sodium";
       
       return [vegetarianAttr,veganAttr,lowCarbAttr,lowSodiumAttr].join(", ")
   }
@@ -66,6 +74,7 @@ recipe.controller('homeController', function ($scope,$http) {
           $scope.title = response['title'];
           $scope.imageUrl = response['imageUrl'];
           $scope.parsed = true;
+          $scope.transformed = true;
       });
       
   }
