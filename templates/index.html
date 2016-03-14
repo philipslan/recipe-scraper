@@ -92,6 +92,17 @@ EECS337: Recipes
                     </div>
                 </div>
             </div>
+            
+            <hr style="border-top: 1px solid #1B1616;">
+            <h3>Steps</h3>
+            <div class="row" style="padding:20px;" ng-repeat="step in steps">
+                <div style="font-weight:bold;">{{'{{$index+1}}'}}. {{'{{step.direction.capitalizeFirstLetter()}}'}}</div>
+                <div>Tools: <i>{{'{{step.tools.join(", ") || "none"}}'}}</i></div>
+                <div>Methods: <i>{{'{{step.methods.join(", ") || "none"}}'}}</i></div>
+                <div>Ingredients: <i>{{'{{step.ingredients.join(", ") || "none"}}'}}</i></div>
+            </div>
+            
+            
             <p><b>I'm not milk and the milk's not me; I'm MICKEY!</b></p>
         </div>
     </div>
