@@ -81,6 +81,7 @@ def autograder(url):
 
     if transformations.is_category('vegetarian', recipe['ingredients'], recipe['title']) == False:
         new_recipe = transformations.transform(recipe,'vegetarian','to')
+        parse_recipe(new_recipe,{})
     else:
         new_recipe = transformations.transform(recipe,'vegetarian','from')
 
@@ -110,7 +111,6 @@ def parse_recipe(recipe,results):
     results['ingredients'] = []
     for ing in recipe['ingredients']:
         results['ingredients'].append(ingredients.parse_ingredients(ing, unit_measure, regex))
-
     primary_cooking_methods, methods_by_step, cooking_methods = methods.find_all_methods(recipe['title'],recipe['directions'])
     results['primary cooking method'] = primary_cooking_methods
     results['cooking methods'] = cooking_methods

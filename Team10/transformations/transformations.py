@@ -74,7 +74,9 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
             if key:
                 replace = " or ".join(val) if len(val) > 1 else val[0]
                 ingredients[i] = re.sub(key,replace,ingredients[i].lower())
-
+        # Getting rid of commas and double spaces in ingredients
+        if other == "ingredients":
+            ingredients[i] = re.sub("  |, "," ",ingredients[i])
         if original_ingredients[i] != ingredients[i]:
             if typ == 'veg':
                 if to_or_from == 'to':
