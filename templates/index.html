@@ -14,7 +14,28 @@
     
     <div ng-show="parsed">
         <h3>Ingredients</h3>
-        <div></div>
+        <table class="table table-striped">
+        	<thead>
+				<tr>
+	        		<td><b>Name</b></td>
+	        		<td><b>Quantity</b></td>
+	        		<td><b>Measurement</b></td>
+	        		<td><b>Descriptor</b></td>
+	        		<td><b>Preparation</b></td>
+	        		<td><b>Preparation-Descripton</b></td>
+	        	</tr>
+        	</thead>
+        	<tbody>
+	        	<tr ng-repeat="ing in ingredients">
+	        		<td ng-bind="ing.name"></td>
+	        		<td ng-bind="ing.quantity"></td>
+	        		<td ng-bind="ing.measurement"></td>
+	        		<td ng-bind="ing.descriptor"></td>
+	        		<td ng-bind="ing.preparation"></td>
+	        		<td ng-bind="ing.prep-description"></td>
+	        	</tr>
+        	</tbody>
+        </table>
         
         
         <div class="row">
