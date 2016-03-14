@@ -11,6 +11,7 @@ String.prototype.toTitleCase = function() {
 recipe.controller('homeController', function ($scope,$http) {
     $scope.parsed = false;
     $scope.transformed = false;
+    $scope.loading = false;
     
     $scope.capitalizeFirst = function(str) {
         str[0] = str[0].toUpperCase();
@@ -18,6 +19,7 @@ recipe.controller('homeController', function ($scope,$http) {
     }
     
     $scope.getRecipe = function() {
+        $scope.loading = true;
         var parsed_url = encodeURIComponent($scope.url);
         $http({
           url:$SCRIPT_ROOT + '/_recipe_scraper/' +parsed_url,
@@ -39,6 +41,7 @@ recipe.controller('homeController', function ($scope,$http) {
             $scope.imageUrl = response['imageUrl'];
             $scope.parsed = true;
             $scope.transformed = false;
+            $scope.loading = false;
         });
   }
   
@@ -52,6 +55,7 @@ recipe.controller('homeController', function ($scope,$http) {
   }
   
   $scope.transform = function() {
+      $scope.loading = true;
       var params = $scope.transformation.split('_');
       var to_or_from = params[0];
       var category = params[1];
@@ -75,6 +79,7 @@ recipe.controller('homeController', function ($scope,$http) {
           $scope.imageUrl = response['imageUrl'];
           $scope.parsed = true;
           $scope.transformed = true;
+          $scope.loading = false;
       });
       
   }
