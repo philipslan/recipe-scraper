@@ -29,10 +29,6 @@
         "hash browns": ["squash"]
     },
 
-    "lowcarb-stopwords": ["almond", "wheat", "vegetable"],
-
-    "pasta": ["penne", "linguine", "fettuccine", "spaghetti"],
-
     "low-sodium": {
         "bacon": ["fresh pork belly"],
         "baking soda": ["sodium-free baking soda"],
