@@ -50,25 +50,37 @@ def transform(recipe, category, to_or_from):
         typ = 'healthy'
     for key,value in recipe.iteritems():
         if key == "title":
-            recipe[key] = transform_helper([value],trans_list, typ, to_or_from)[0]
+            recipe[key] = transform_helper([value],trans_list, typ, to_or_from, key)[0]
         else:
-            recipe[key] = transform_helper(value,trans_list, typ, to_or_from)
+            recipe[key] = transform_helper(value,trans_list, typ, to_or_from, key)
     return recipe
 
-def transform_helper(ingredients,transformations,typ,to_or_from):
+def transform_helper(ingredients, transformations, typ,to_or_from, other):
+    ingredients = [i.lower() for i in ingredients]
     final = []
     original_ingredients = ingredients[:]
     for i in xrange(len(ingredients)):
         for key,val in transformations.iteritems():
             replace = " or ".join(val) if len(val) > 1 else val[0]
-            ingredients[i] = re.sub(key,replace,ingredients[i].lower())
+            ingredients[i] = re.sub(key,replace,ingredients[i])
         if original_ingredients[i] != ingredients[i]:
             if typ == 'veg':
                 if to_or_from == 'to':
-                    ingredients[i] = re.sub("ground","crumbled",ingredients[i].lower())
+                    ingredients[i] = re.sub("ground","crumbled",ingredients[i])
                 else:
-                    ingredients[i] = re.sub("crumbled","ground",ingredients[i].lower())
+                    ingredients[i] = re.sub("crumbled","ground",ingredients[i])
             # if typ == 'healthy':
 
         final.append(ingredients[i])
+
+    if other == "title" and typ == "veg" and re.findall(r"vegetarian|vegan", final[0].lower()):
+        final[0] = re.sub(r"vegetarian |vegan ", "", final[0].lower())
+    elif original_ingredients == ingredients and typ == 'veg': # nothing changed
+        if other == "ingredients":
+            final.append('crumbled bacon')
+        if other == "directions":
+            final.append('Add crumbled bacon on top.')
+
     return final
+
+
