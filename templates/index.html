@@ -5,7 +5,7 @@ EECS337: Recipes
 
 {% block content %}
 <div ng-controller="homeController">
-    <div class="row">
+    <div class="row" style="color:white;">
         <div class="col-xs-6">
             <label>Enter AllRecipes URL</label>
             <div class="col-xs-11" style="padding:0">
@@ -37,7 +37,7 @@ EECS337: Recipes
         </div>        
     </div>
     <img src="http://www.lettersmarket.com/uploads/lettersmarket/blog/loaders/common_metal/ajax_loader_metal_512.gif" ng-show="loading && !parsed" style="height: 50px;margin: 0 auto;display: block;"/>
-    <div ng-show="parsed" style="margin-top:20px;background:url({{'{{imageUrl}}'}}); height:500px;overflow-y:scroll;background-size:cover; overflow-x: hidden;margin-bottom:50px;">
+    <div ng-show="parsed" style="margin-top:20px;background:url({{'{{imageUrl}}'}}); height:500px;overflow-y:scroll;background-size:cover; overflow-x: hidden;margin-bottom:50px;border: 4px solid black;">
         <div class="row" style="background: rgba(0,0,0,0.5);">
             <div class="col-xs-10">
                 <h2 style="margin: 0;color: white;padding: 20px;">
@@ -103,7 +103,7 @@ EECS337: Recipes
             </div>
             
             
-            <p><b>I'm not milk and the milk's not me; I'm MICKEY!</b></p>
+            <p style="position: relative;top: 60px;left: 67%;opacity: 0.7;">I'm not milk and the milk's not me; I'm MICKEY!</p>
         </div>
     </div>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height:100%;">
   <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
     <title>{% block title %}{% endblock %}</title>
@@ -8,7 +8,7 @@
       $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
   </head>
-  <body ng-app="recipe">
+  <body ng-app="recipe" style="background: url(http://3.bp.blogspot.com/-51RAbRjh6cs/UyGzHEznx5I/AAAAAAAACfQ/tgXAcg_Xwak/s1600/sendak+milk+bottle+IntheNightKitchen-copy1.jpg);background-size: cover;height:100%;">
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
