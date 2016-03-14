@@ -24,7 +24,7 @@ recipe.controller('homeController', function ($scope,$http) {
             $scope.primary_method = response['results']['primary cooking method'];
             $scope.methods = response['results']['cooking methods'];
             $scope.tools = response['results']['cooking tools'];
-            
+            $scope.title = response['title'];
             $scope.imageUrl = response['imageUrl'];
             $scope.parsed = true;
  
