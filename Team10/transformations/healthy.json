@@ -33,6 +33,16 @@
 
     "pasta": ["penne", "linguine", "fettuccine", "spaghetti"],
 
+    "methods": {
+        "fry": ["bake"],
+        "deep-fry": ["bake"],
+        },
+
+    "tools": {
+        "frying pan": ["baking pan"],
+        "skillet": ["baking pan"],
+    }
+
     "low-sodium": {
         "bacon": ["fresh pork belly"],
         "baking soda": ["sodium-free baking soda"],
