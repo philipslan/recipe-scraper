@@ -32,13 +32,13 @@ def is_category(category, ingredients):
         trans_list = TRANSFORMATIONS['to']['healthy'][category]
     else:
         print "Category not found"
-    
+
     for ingredient in ingredients:
         for ing in ingredient.split():
             if ing in trans_list:
                 return True
     return False
-        
+
 # to_category is 'to' or 'from'
 def transform(recipe, category, to_or_from):
     trans_list = []
@@ -55,15 +55,17 @@ def transform(recipe, category, to_or_from):
         trans_list = TRANSFORMATIONS[to_or_from]['healthy'][category]
     else:
         print "Category not found"
-    
+
     # return transformed_recipe
 
 def veg_transform_helper(ingredients,transformations):
     final = []
-    for ingredient in ingredients:
+    original_ingredients = ingredients[:]
+    for i in xrange(len(ingredients)):
         for key,val in transformations.iteritems():
             replace = " or ".join(val) if len(val) > 1 else val[0]
-            ingredient = re.sub(key,replace,ingredient.lower())
-        ingredient = re.sub("ground","crumbled",ingredient.lower())
-        final.append(ingredient)
+            ingredients[i] = re.sub(key,replace,ingredients[i].lower())
+        if original_ingredients[i] != ingredients[i]:
+            ingredients[i] = re.sub("ground","crumbled",ingredients[i].lower())
+        final.append(ingredients[i])
     return final
