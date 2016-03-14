@@ -12,11 +12,31 @@
 		"gelatin": ["agar flakes"],
 		"chocolate": ["vegan chocolate"],
 		"cocoa": ["vegan chocolate"],
-		"ice cream": ["soy based ice cream", "soy ice cream"]
-	},
-
-	"cheeses": ["Asiago", "Carmody", "Cheddar", "Colby", "Cotija",
-		"Edam", "Enchilado", "Fontina", "Gouda", "Havarti",
-		"Longhorn", "Port Salut", "St. George", "Syrian"
-	]
+		"ice cream": ["soy based ice cream", "soy ice cream"],
+		"steak": ["seitan steak"],
+		"beef": ["jackfruit"],
+		"liver": ["seitan"],
+		"intestine": ["tempeh"],
+		"burger": ["lentils"],
+		"pork": ["jackfruit"],
+		"bacon": ["veggie bacon"],
+		"sausage": ["seitan"],
+		"ham": ["seitan"],
+		"veal": ["seitan"],
+		"fish": ["tempeh"],
+		"chicken": ["tofu"],
+		"turkey": ["seitan"],
+		"quail": ["seitan"],
+		"meatloaf": ["tempeh"],
+		"pheasant": ["mushrooms"],
+		"goose": ["potato"],
+		"lamb": ["seitan"],
+		"bison": ["seitan"],
+		"buffalo": ["seitan"],
+		"venison": ["seitan"],
+		"caribou": ["seitan"],
+		"rabbit": ["jackfruit"],
+		"moose": ["seitan"],
+		"chicken broth": ["vegetable soup"]
+	}
 }

@@ -7,7 +7,22 @@
 <div ng-controller="homeController">
 <h1 style="text-align: center">Team 10 Recipe Scraper</h1>
 	<hr>
-	<h3 ng-show="working" style="text-align:center">Working...</h3>
+    Enter AllRecipes URL<br/>
+    <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:300px;padding:5px;outline:none;"><br/>
+    <button type="submit", style="width:300px;" ng-click="getRecipe()">Go</button>
+    
+    
+    <div>
+        <h3>Ingredients</h3>
+        <div></div>
+        
+        <h3>Methods</h3>
+        <div></div>
+        
+        <h3>Tools</h3>
+        <div></div>
+    </div>
+    
 <!-- 		<div class="col-lg-6" ng-show="!working">
 		<form class="form-horizontal">
 		  <fieldset>

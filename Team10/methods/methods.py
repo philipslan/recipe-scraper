@@ -70,11 +70,14 @@ def find_all_methods(title, directions):
 		cooking_methods.extend(find_methods(step))
 		methods_by_step.append(find_methods(step))
 
-	title = title.lower().split(' ')
-	for word in title:
+	title_list = title.lower().split(' ')
+	for word in title_list:
 		if word in primary_methods:
 			primary_method = word
 			break
+
+	if "stir fry" in title:
+		primary_method = "stir-fry"
 
 	# if we can't find the primary method in the title
 	if not primary_method:
