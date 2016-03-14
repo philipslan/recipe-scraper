@@ -11,7 +11,6 @@
         "macaroni": ["cauliflower"],
         "mac and cheese": ["cauliflower and cheese"],
         "pasta salad": ["mixed vegetables"],
-        "pasta": ["spaghetti squash"],
         "breadcrumbs": ["rolled oats"],
         "sliced bread": ["eggplant"],
         "white bread": ["whole wheat bread"],
@@ -28,7 +27,6 @@
         "potato chips": ["kale chips"],
         "hash browns": ["squash"]
     },
-
     "low-sodium": {
         "bacon": ["fresh pork belly"],
         "baking soda": ["sodium-free baking soda"],
