@@ -6,6 +6,7 @@
 $virtualenv venv
 $source venv/bin/activate
 $pip install -r requirements.txt
+$cd Team10/
 $python web.py
 ```
 4\. Open Chrome browser at localhost:5000 (transformation select is slightly wonky in Safari)
