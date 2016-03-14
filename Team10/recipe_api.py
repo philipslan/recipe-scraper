@@ -51,6 +51,8 @@ def autograder(url):
     results['url'] = url
 
     recipe = scraper.get_recipe(url)
+    if recipe == None:
+        return None
 
     unit_measure, regex = ingredients.load_ingredient_data()
     results['ingredients'] = []
@@ -88,6 +90,8 @@ def parse_recipe(url):
     results['url'] = url
 
     recipe = scraper.get_recipe(url)
+    if recipe == None:
+        return None
 
     unit_measure, regex = ingredients.load_ingredient_data()
     results['ingredients'] = []
