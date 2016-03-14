@@ -12,6 +12,7 @@
 		"veal": ["seitan"],
 		"fish": ["tempeh"],
 		"chicken": ["tofu"],
+		"meatloaf": ["tempeh"],
 		"turkey": ["seitan"],
 		"quail": ["seitan"],
 		"pheasant": ["mushrooms"],
@@ -22,7 +23,8 @@
 		"venison": ["seitan"],
 		"caribou": ["seitan"],
 		"rabbit": ["jackfruit"],
-		"moose": ["seitan"]
+		"moose": ["seitan"],
+		"chicken broth": ["vegetable soup"]
 	},
 	"methods": {
 		"ground": ["crumbled"],
