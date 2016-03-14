@@ -1,6 +1,17 @@
 var recipe = angular.module('recipe', []);
 
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 recipe.controller('homeController', function ($scope,$http) {
+    $scope.parsed = false;
+    
+    $scope.capitalizeFirst = function(str) {
+        str[0] = str[0].toUpperCase();
+        return str;
+    }
+    
     $scope.getRecipe = function() {
         var parsed_url = encodeURIComponent($scope.url);
         $http({
@@ -9,10 +20,11 @@ recipe.controller('homeController', function ($scope,$http) {
         }).success(function(response){
             $scope.steps = response.steps;
             $scope.recipe = response.results;
-            $scope.ingredients = response['results']['ingredients'];
+            $scope.ingredients = JSON.stringify(response['results']['ingredients']);
             $scope.primary_method = response['results']['primary cooking method'];
             $scope.methods = response['results']['cooking methods'];
             $scope.tools = response['results']['cooking tools'];
+            $scope.parsed = true;
  
     });
   }

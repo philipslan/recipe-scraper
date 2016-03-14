@@ -11,10 +11,7 @@ def index():
 
 @app.route('/_recipe_scraper/<path:url>')
 def get_recipe(url):
-    # return jsonify({'a':2})
-    print "before parse"
     output = jsonify(parse_recipe(url))
-    print "after parse"
     return output
     
 # @app.route('/_get_year/<year>')

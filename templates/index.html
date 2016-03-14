@@ -8,19 +8,32 @@
 <h1 style="text-align: center">Team 10 Recipe Scraper</h1>
 	<hr>
     Enter AllRecipes URL<br/>
-    <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:300px;padding:5px;outline:none;"><br/>
+    <input type="text" ng-model="url" placeholder="http://allrecipes.com/chicken" style="width:300px;padding:5px;outline:none;" ng-init="url='http://allrecipes.com/Recipe/Easy-Garlic-Broiled-Chicken/'"><br/>
     <button type="submit", style="width:300px;" ng-click="getRecipe()">Go</button>
     
     
-    <div>
+    <div ng-show="parsed">
         <h3>Ingredients</h3>
         <div></div>
         
-        <h3>Methods</h3>
-        <div></div>
         
-        <h3>Tools</h3>
-        <div></div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3>Methods</h3>
+                <h4>Primary</h4>
+                <div ng-bind="primary_method.capitalizeFirstLetter()"></div>
+                <h4>Other</h4>
+                <div ng-repeat="method in methods">
+                    <div ng-bind="method.capitalizeFirstLetter()"></div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <h3>Tools</h3>
+                <div ng-repeat="tool in tools">
+                    <div ng-bind="tool.capitalizeFirstLetter()"></div>
+                </div>   
+            </div>
+        </div>
     </div>
     
 <!-- 		<div class="col-lg-6" ng-show="!working">
