@@ -1,10 +1,10 @@
 ## How to Use
 Navigate to root directory in terminal
 ```bash
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python web.py
+$virtualenv venv
+$source venv/bin/activate
+$pip install -r requirements.txt
+$python web.py
 ```
 Open browser at localhost:5000
 
