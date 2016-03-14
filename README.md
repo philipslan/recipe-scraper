@@ -1,13 +1,14 @@
 ## How to Use
-Clone repository
-Navigate to root directory in terminal
+1. Clone repository<br/>
+2. Navigate to root directory in terminal<br/>
+3. Run the following commands:
 ```bash
 $virtualenv venv
 $source venv/bin/activate
 $pip install -r requirements.txt
 $python web.py
 ```
-Open browser at localhost:5000
+4\. Open browser at localhost:5000
 
 ## Dependencies:
 BeautifulSoup
