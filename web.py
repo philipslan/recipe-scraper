@@ -43,6 +43,7 @@ def transform(url, to_or_from, category):
     output['low_sodium'] = is_category('low-sodium',ingredients,title)
     output['chinese'] = is_category('chinese',ingredients,title)
     output['italian'] = is_category('italian',ingredients,title)
+    output[category] = to_or_from == 'to'
     return jsonify(output)
 
 

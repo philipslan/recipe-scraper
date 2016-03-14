@@ -64,7 +64,7 @@ EECS337: Recipes
             	<tbody>
     	        	<tr ng-repeat="ing in ingredients">
     	        		<td ng-bind="ing.name"></td>
-    	        		<td ng-bind="ing.quantity"></td>
+    	        		<td ng-bind="filter(ing.quantity)"></td>
     	        		<td ng-bind="ing.measurement"></td>
     	        		<td ng-bind="ing.descriptor"></td>
     	        		<td ng-bind="ing.preparation"></td>
@@ -92,6 +92,7 @@ EECS337: Recipes
                     </div>
                 </div>
             </div>
+            <p><b>I'm not milk and the milk's not me; I'm MICKEY!</b></p>
         </div>
     </div>
 

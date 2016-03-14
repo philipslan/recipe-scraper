@@ -20,6 +20,7 @@ recipe.controller('homeController', function ($scope,$http) {
     
     $scope.getRecipe = function() {
         $scope.loading = true;
+        $scope.transformation = "";
         var parsed_url = encodeURIComponent($scope.url);
         $http({
           url:$SCRIPT_ROOT + '/_recipe_scraper/' +parsed_url,
@@ -42,6 +43,10 @@ recipe.controller('homeController', function ($scope,$http) {
             $scope.parsed = true;
             $scope.transformed = false;
             $scope.loading = false;
+        })
+        .error(function(response){
+          $scope.loading = false;
+          alert("Invalid Url");
         });
   }
   
@@ -80,9 +85,16 @@ recipe.controller('homeController', function ($scope,$http) {
           $scope.parsed = true;
           $scope.transformed = true;
           $scope.loading = false;
+      })
+      .error(function(response){
+        $scope.loading = false;
+        alert("Invalid Url");
       });
       
   }
   
+  $scope.filter = function (number) {
+    return (number % 1 != 0) ? number.toFixed(2) : number;
+  }
   
 });
