@@ -12,6 +12,12 @@ recipe.controller('homeController', function ($scope,$http) {
     $scope.parsed = false;
     $scope.transformed = false;
     $scope.loading = false;
+    $scope.vegetarian = false;
+    $scope.vegan = false;
+    $scope.low_carb = false;
+    $scope.low_sodium = false;
+    $scope.chinese = false;
+    $scope.italian = false;
     
     $scope.capitalizeFirst = function(str) {
         str[0] = str[0].toUpperCase();
@@ -43,6 +49,7 @@ recipe.controller('homeController', function ($scope,$http) {
             $scope.parsed = true;
             $scope.transformed = false;
             $scope.loading = false;
+            $scope.$apply();
         })
         .error(function(response){
           $scope.loading = false;
@@ -85,6 +92,7 @@ recipe.controller('homeController', function ($scope,$http) {
           $scope.parsed = true;
           $scope.transformed = true;
           $scope.loading = false;
+          $scope.$apply();
       })
       .error(function(response){
         $scope.loading = false;

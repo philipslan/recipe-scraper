@@ -35,10 +35,8 @@ def parse_ingredients(entry, units_measure, prep_regex):
 	for i,val in enumerate(entry_list):
 		if val.strip(')').strip('(') in units_measure:
 			if val.find('(') == -1 and val.find(')') == -1:
-				print 'if', entry_list[i]
 				measurement= entry_list.pop(i).strip(')').strip('(')
 			else:
-				print 'else', entry_list[i]
 				measurement= entry_list[i].strip(')').strip('(')
 			break
 	if not measurement:
@@ -82,7 +80,6 @@ def get_name(in_list):
 		if val[1] == 'ADP':
 			break
 		elif val[1] != 'VERB' and val[1] != 'PRT' and val[1] != 'ADJ' and val[1] != 'NUM':
-			print val[1], val[0]
 			output_list1.append(val[0])
 		elif val[1] != 'NUM':
 			output_list2.append(val)
