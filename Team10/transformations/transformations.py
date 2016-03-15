@@ -112,7 +112,7 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
 
         elif [i.lower() for i in original_ingredients] == [i.lower() for i in ingredients]: # nothing changed
             if other is "ingredients":
-                final.append('crumbled bacon')
+                final.append('1 teaspoon crumbled bacon')
             if other is"directions":
                 final.append('Add crumbled bacon on top.')
 
