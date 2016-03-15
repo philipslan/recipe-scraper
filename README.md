@@ -18,6 +18,7 @@ Workflow diagram is in Tm10WorkFlowDiagram.pdf
 ## Dependencies:
 - BeautifulSoup
 - Flask
+- NLTK
 
 ## Sources for Knowledge Base
 - Tools: https://en.wikipedia.org/wiki/List_of_food_preparation_utensils
