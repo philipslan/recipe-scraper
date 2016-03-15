@@ -88,7 +88,7 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
                     ingredients[i] = re.sub(regex, r'', ingredients[i].lower())
 
         for key, val in transformations.iteritems():
-            if key == "":
+            if key == "" or key == " ":
                 pass
             else:
                 replace = " or ".join(val) if len(val) > 1 else val[0]
@@ -109,8 +109,7 @@ def transform_helper(ingredients, transformations, typ, to_or_from, other, categ
     if typ is "veg":
         if other is "title" and to_or_from is "from" and re.findall(r"vegetarian|vegan", final[0].lower()):
             final[0] = re.sub(r"vegetarian |vegan ", "", final[0].lower())
-
-        elif [i.lower() for i in original_ingredients] == [i.lower() for i in ingredients]: # nothing changed
+        elif [i.lower() for i in original_ingredients] == [i.lower() for i in ingredients] and to_or_from == "from":
             if other is "ingredients":
                 final.append('1 teaspoon crumbled bacon')
             if other is"directions":
